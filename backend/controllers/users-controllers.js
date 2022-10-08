@@ -1,8 +1,16 @@
 const User = require("../models/user");
 
+//third party packages for functionality
+const bcrypt = require("bcryptjs");
+
+const validateEmail = (emailID) =>{
+    let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+    return regex.test(emailID)
+}
+
 const createUser =  async (req,res,next) => {
 
-    const {emailID,password,confirmPassword,role} = req.body;
+    var {emailID,password,confirmPassword,role} = req.body;
 
     let existingUser;
     try{
@@ -17,18 +25,38 @@ const createUser =  async (req,res,next) => {
 
 
   
-    const createdUser = {
+    var createdUser = {
         emailID,
         password,
         confirmPassword,
         role
     }
 
-    if(role == 1){
-        createdUser = {...createdUser,waitingForApproval:0}
+    if(!validateEmail(emailID)){
+        return res.json({status:"400",message:"email is not valid"})
     }
 
-    let savedUser = new User(createdUser);
+    if(password!=confirmPassword){
+        return res.json({status:"400",message:"password and confirmpassword are not same",password,confirmPassword})
+    }
+
+
+    var hashedPassword;
+    try{
+        hashedPassword = await bcrypt.hash(password,10);
+        createdUser.password = hashedPassword;
+        // console.log({hashedPassword});
+        createdUser.confirmPassword = hashedPassword
+        // console.log({createdUserHashed: createdUser});
+    }catch(err){
+        console.log(err);
+    }
+    if(role == 1){
+        // createdUser = {...createdUser,waitingForApproval:0}
+        createdUser.waitingForAprroval = 0;
+    }
+    console.log({createdUserBeforeSaving:createdUser});
+    var savedUser = new User(createdUser);
     try{
         savedUser =  await savedUser.save();
     }catch(err){
