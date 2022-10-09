@@ -1,0 +1,26 @@
+.menu{
+    width: 100%;
+    height: 25px;
+    padding: 10px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    background: #5BB318;
+    margin: 0;
+    font-weight: bold;
+    color: white;
+}
+
+.menu__items{
+    
+}
+
+.menu__item{
+   display: inline-block;
+   padding: 0 20px;
+}
+
+.name__item{
+    color : #EAE509
+}
+
