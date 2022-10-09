@@ -2,15 +2,23 @@ const User = require("../models/user");
 
 //third party packages for functionality
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+//keys
+const {JWT_KEY} = require("../keys/keys");
 
 const validateEmail = (emailID) =>{
     let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
     return regex.test(emailID)
 }
 
-const createUser =  async (req,res,next) => {
+const signupUser =  async (req,res,next) => {
 
     var {emailID,password,confirmPassword,role} = req.body;
+
+    if(!(emailID && password && confirmPassword && role )){
+        return res.json({status:400,message:"All fields are required"})
+    }
 
     let existingUser;
     try{
@@ -22,8 +30,6 @@ const createUser =  async (req,res,next) => {
     }catch(err){
         console.log(err);
     }
-
-
   
     var createdUser = {
         emailID,
@@ -67,4 +73,41 @@ const createUser =  async (req,res,next) => {
 
 }
 
-exports.createUser  = createUser;
+const loginUser = async (req,res,next)=>{
+   const {emailID,password} = req.body;
+
+   if(!(emailID && password)){
+    return res.json({status:400,message:"All fields are required"}) 
+   }
+
+   let existingUser;
+   try{
+    existingUser = await User.findOne({emailID});
+    if(!existingUser){
+        return res.json({status:400,message:"user not found"});
+    }
+
+   }catch(err){
+    console.log(err);
+   }
+
+//    console.log({existingUser});
+   var token;
+   try{
+    let result = await bcrypt.compare(password,existingUser.password);
+    console.log({result});
+    if(result){
+         token = await jwt.sign({exp: Math.floor(Date.now()/1000 + 60*60), data:existingUser,},JWT_KEY);
+    }else{
+        return res.json({status:400,message:"user credentials doesnt match, try again"})
+    }
+
+   }catch(err){
+    console.log(err);
+   }
+
+   return res.json({status:200,message:"authentication successful",token})
+   
+}
+exports.loginUser =loginUser;
+exports.signupUser  = signupUser;

@@ -9,7 +9,8 @@ const userControllers = require("../controllers/users-controllers");
 //     res.json({message:"get request in users"})
 // });
 
-router.post("/create-user",userControllers.createUser);
+router.post("/signup-user",userControllers.signupUser);
+router.post("/login-user",userControllers.loginUser);
 
 module.exports = router;
 
