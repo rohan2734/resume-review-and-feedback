@@ -18,8 +18,9 @@ function App() {
   return (
     <div className="App">
       {/* <h1>App.js s</h1> */}
-      <Navbar />
+     
       <BrowserRouter>
+          <Navbar />
          <CustomRoutes />
       </BrowserRouter>
     </div>

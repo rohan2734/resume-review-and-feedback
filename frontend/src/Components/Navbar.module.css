@@ -12,24 +12,34 @@
     box-sizing: border-box;
 }
 
+.name__item{
+    color : #EAE509
+}
+
 .menu__items{
     /* text-align: center; */
     
 }
 
-.menu__item{
+.menu__item {
    display: inline-block;
    padding: 0 20px 5px 0;
+   
    /* text-align: center; */
    
    /* margin: auto; */
 }
 
-.menu__item:hover{
+.menu__item a:hover{
     border-bottom: 2px solid white;
 }
 
-.name__item{
-    color : #EAE509
+.menu__item a{
+    text-decoration: none;
+    color: white;
 }
 
+.active{
+    border-bottom: 2px solid;
+    padding-bottom: 5px;
+}

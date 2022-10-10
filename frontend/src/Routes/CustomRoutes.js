@@ -5,13 +5,9 @@ import Home from "../Pages/Home";
 
 const CustomRoutes = () => {
     return (
-        <>
-           <Routes>
-
-         
-<Route path="/" element={<Home />}/>
-</Routes>
-        </>
+        <Routes>
+            <Route path="/" element={<Home />}/>
+        </Routes>
     );
 }
 
