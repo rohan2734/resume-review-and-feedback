@@ -12,6 +12,15 @@ const Navbar =() => {
                     <li className={styles.menu__item}><span className={styles.name__item}>Perfect</span>Resume</li>
                 </div>
                 <div className={styles.menu__items}>
+                <li className={styles.menu__item}>
+                        <NavLink to='/'
+                         className={ ({isActive}) => (isActive ? `${styles.active} ` : styles.menu__item) }
+                            
+                        >
+                             Home
+                        </NavLink>
+                       
+                    </li>
                     <li className={styles.menu__item}>
                     <NavLink to='/about'
                          className={ ({isActive}) => (isActive ? `${styles.active} ` : styles.menu__item) }
@@ -49,15 +58,7 @@ const Navbar =() => {
                         Login
                         </NavLink>
                         </li>
-                    <li className={styles.menu__item}>
-                        <NavLink to='/'
-                         className={ ({isActive}) => (isActive ? `${styles.active} ` : styles.menu__item) }
-                            
-                        >
-                             trial
-                        </NavLink>
-                       
-                    </li>
+                 
                 </div>
             </ul>
         </nav>
