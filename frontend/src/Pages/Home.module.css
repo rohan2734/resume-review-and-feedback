@@ -1,0 +1,38 @@
+.container__parent{
+    background: #7DCE13;
+    width: 100%;
+}
+.container{
+    background: #7DCE13;
+    width: 50%;
+    height: calc(100vh - 45px); 
+    margin: 0;
+    box-sizing: border-box;
+    margin: auto;
+    text-align: center;
+    padding: 10rem 0;
+    /* padding: 2rem 4rem; */
+    /* 45px is the height of the navbar  */
+}
+
+.container__title{
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+.container__title__highlight{
+    color: #EAE509;
+}
+
+.container__subtitle{
+    font-weight: lighter;
+    color: white;
+}
+.container__button{
+    border: 0;
+    padding: 0.5rem;
+    color:white;
+    font-weight: bold;
+    background-color: #EAE509;
+    border-radius: 5px;
+}
