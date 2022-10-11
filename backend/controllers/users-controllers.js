@@ -16,7 +16,10 @@ const signupUser =  async (req,res,next) => {
 
     var {emailID,password,confirmPassword,role} = req.body;
 
-    if(!(emailID && password && confirmPassword && role )){
+    console.log({reqBody: req.body});
+
+    if(!(emailID && password && confirmPassword && role!=null )){  
+       
         return res.json({status:400,message:"All fields are required"})
     }
 
