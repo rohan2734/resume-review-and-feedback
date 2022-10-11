@@ -94,11 +94,20 @@ const loginUser = async (req,res,next)=>{
     console.log(err);
    }
 
+   if(existingUser.role == 1){
+      let currWaitingForApprovalStatus = existingUser.waitingForApproval;
+     if(currWaitingForApprovalStatus == 0){
+        return res.json({status:400,message:"waiting for approval"})
+     }else if(currWaitingForApprovalStatus == -1){
+        return res.json({status:400,message:"rejected as expert"})
+     }
+   }
+
 //    console.log({existingUser});
    var token;
    try{
     let result = await bcrypt.compare(password,existingUser.password);
-    console.log({result});
+    // console.log({result});
     if(result){
          token = await jwt.sign({exp: Math.floor(Date.now()/1000 + 60*60), data:existingUser,},JWT_KEY);
     }else{
