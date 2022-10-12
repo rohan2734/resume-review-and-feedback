@@ -37,12 +37,12 @@ const SignupAsExpert = () => {
             linkedinURL : signupDetails.linkedinURL,
             role : 1
         }
-        console.log({signupDetailsBeforePosting: data});
+        // console.log({signupDetailsBeforePosting: data});
 
         axios.post(`${BASE_URL}/api/users/signup-user`,data)
         .then((res) =>{
             setSignupDetails({...signupDetails,signupMessage : res.data.message})
-            console.log({response : res.data});
+            // console.log({response : res.data});
         })
         .catch(err =>{
             setSignupDetails({...setSignupDetails,signupMessage: err})
@@ -76,7 +76,7 @@ const SignupAsExpert = () => {
                         </div>
                         <div className={styles.input__item}>
                             <label className={styles.input__label}>Linkedin </label>
-                            <input name="confirmPassword"  className={styles.input__field} placeholder="enter linkedin profile url here, ex: https://linkedin.com/in/profilename" value={signupDetails.confirmPassword} onChange={handleSignupDetailsChange} type="password"/>
+                            <input name="linkedinURL"  className={styles.input__field} placeholder="enter linkedin profile url here, ex: https://linkedin.com/in/profilename" value={signupDetails.linkedinURL} onChange={handleSignupDetailsChange} type="text"/>
                         </div>
                         <button className={styles.container__submit} type="submit" >signup as expert</button>
                     </form>

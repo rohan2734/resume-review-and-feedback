@@ -44,7 +44,7 @@ const signupUser =  async (req,res,next) => {
         if(req.body.linkedinURL==null){
             return res.json({status:400,message:"all fields are required"})
         }
-        createdUser = {...createdUser,linkedinURL:linkedinURL}
+        createdUser = {...createdUser,linkedinURL:req.body.linkedinURL}
     }
    
 
