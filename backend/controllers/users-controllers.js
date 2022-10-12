@@ -40,6 +40,13 @@ const signupUser =  async (req,res,next) => {
         confirmPassword,
         role
     }
+    if(role == 1){
+        if(req.body.linkedinURL==null){
+            return res.json({status:400,message:"all fields are required"})
+        }
+        createdUser = {...createdUser,linkedinURL:linkedinURL}
+    }
+   
 
     if(!validateEmail(emailID)){
         return res.json({status:"400",message:"email is not valid"})

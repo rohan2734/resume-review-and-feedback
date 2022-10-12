@@ -5,7 +5,8 @@ const userSchema = new mongoose.Schema({
     password : {type:String,required:true},
     confirmPassword:{type:String,required:false},
     role : {type:Number,required:false},
-    waitingForApproval : {type: Number,required:false}
+    waitingForApproval : {type: Number,required:false},
+    linkedinURL : {type:String,required:false}
 })
 //role -0 =>student
 //role -1 =>expert
