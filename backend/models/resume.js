@@ -17,12 +17,12 @@ const resumeSchema = new mongoose.Schema({
     //profile details
     candidateProfileDescription: {type:String,required:false},
     //embedded objects
-    // professionalExperience : 
-    // skills : 
-    // projects:
-    // certificates:
-    // awards:
-    // education:
+    professionalExperiences : [{type: mongoose.Schema.Types.ObjectId,ref:'professionalExperience'}],
+    skills : [{type: mongoose.Schema.Types.ObjectId,ref:'skill'}],
+    projects: [{type: mongoose.Schema.Types.ObjectId,ref:'project'}],
+    certificates: [{type: mongoose.Schema.Types.ObjectId,ref:'certificate'}],
+    awards: [{type: mongoose.Schema.Types.ObjectId,ref:'award'}],
+    education: {type: mongoose.Schema.Types.ObjectId,ref:'education'}
 })
 
 module.exports = mongoose.model('resume',resumeSchema);

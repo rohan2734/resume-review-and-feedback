@@ -55,6 +55,8 @@
     color: white;
     border: 0;
     margin: 10px 0;
+    width: 100%;
+    /* display: block; */
 }
 
 .container__submit:hover{

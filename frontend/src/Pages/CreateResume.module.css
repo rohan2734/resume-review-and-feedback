@@ -19,11 +19,6 @@
     margin: 0px;
     /* width: 60%; */
 }
-.container__subtitle a{
-    text-decoration: none;
-    color:#5BB318;
-    border-bottom: 2px solid #5BB318;
-}
 
 .inputs{
     text-align: left;

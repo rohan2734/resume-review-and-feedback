@@ -4,12 +4,14 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const userRoutes = require("./routes/users-routes");
+const resumeRoutes = require("./routes/resume-routes");
 
 const app = express();
 
 app.use(cors())
 app.use(bodyParser.json());
 app.use('/api/users',userRoutes);
+app.use('/api/resumes',resumeRoutes);
 
 //resume review is the database name
 mongoose
