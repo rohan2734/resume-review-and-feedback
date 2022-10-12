@@ -16,7 +16,7 @@ const signupUser =  async (req,res,next) => {
 
     var {emailID,password,confirmPassword,role} = req.body;
 
-    console.log({reqBody: req.body});
+    // console.log({reqBody: req.body});
 
     if(!(emailID && password && confirmPassword && role!=null )){  
        
@@ -68,10 +68,10 @@ const signupUser =  async (req,res,next) => {
         console.log(err);
     }
     if(role == 1){
-        // createdUser = {...createdUser,waitingForApproval:0}
-        createdUser.waitingForAprroval = 0;
+        createdUser = {...createdUser,waitingForApproval:0}
+        // console.log({createdUserWA:createdUser});
     }
-    console.log({createdUserBeforeSaving:createdUser});
+    // console.log({createdUserBeforeSaving:createdUser});
     var savedUser = new User(createdUser);
     try{
         savedUser =  await savedUser.save();
@@ -102,6 +102,7 @@ const loginUser = async (req,res,next)=>{
    }
 
    if(existingUser.role == 1){
+    // console.log({existingUser});
       let currWaitingForApprovalStatus = existingUser.waitingForApproval;
      if(currWaitingForApprovalStatus == 0){
         return res.json({status:400,message:"waiting for approval"})

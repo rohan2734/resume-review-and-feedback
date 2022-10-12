@@ -21,7 +21,7 @@
     
 }
 
-.menu__item {
+.menu__item{
    display: inline-block;
    padding: 0 20px 5px 0;
    
@@ -29,8 +29,17 @@
    
    /* margin: auto; */
 }
+.menu__item button{
+    color: white;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'montserrat';
+    padding-bottom: 5px;
+}
 
-.menu__item a:hover{
+.menu__item a:hover,.menu__item button:hover{
     border-bottom: 2px solid white;
 }
 

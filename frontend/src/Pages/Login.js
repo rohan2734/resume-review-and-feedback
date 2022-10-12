@@ -1,15 +1,18 @@
 
 import React,{useState} from 'react';
 import {Link} from "react-router-dom";
+import { useDispatch } from 'react-redux';
 
 import axios from 'axios';
 
 import { BASE_URL } from '../Keys/Keys';
 
 import styles from "./Login.module.css";
+import { login } from '../store/authenticateSlice';
 
 
 const Login = () => {
+    const dispatch = useDispatch();
 
     const [loginDetails,setLoginDetails] = useState({
         emailID : "",
@@ -25,8 +28,9 @@ const Login = () => {
         }
         axios.post(`${BASE_URL}/api/users/login-user`,data)
         .then(res =>{
-            // console.log({resp : res.data});
+            console.log({resp : res.data});
             setLoginDetails({...loginDetails, loginMessage : res.data.message })
+            dispatch(login({jwtToken : res.data.token}))
         })
         .catch(err => console.log(err))
     }
