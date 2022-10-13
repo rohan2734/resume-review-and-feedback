@@ -1,6 +1,6 @@
 //models
 const Resume = require("../models/resume");
-const User = require("../models/user");
+// const User = require("../models/user");
 
 
 const jwt = require("jsonwebtoken");
@@ -17,7 +17,7 @@ const createResume = async (req,res) => {
     //     console.log(err);
     // }
     
-    
+    // console.log({user});
     if(!user){
         return res.json({status:400,message:"jwt decryption failed"})
     }
@@ -35,7 +35,7 @@ const createResume = async (req,res) => {
     }catch(err){
         console.log(err);
     }
-
+    // console.log({newResume});
     return res.json({status:200,message:"resume is created succesfully",newResume})
     // return res.json({existingUser})
 

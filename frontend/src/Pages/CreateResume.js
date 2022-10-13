@@ -18,7 +18,12 @@ const CreateResume = () => {
         const data = {
             resumeName : resumeDetails.resumeName
         }
-        axios.post(`${BASE_URL}/api/resumes/create-resume`,data)
+        var token = localStorage.getItem("token");
+        //need to add jwt token in headers with Bearer in authorization header
+        const headers ={ 
+            authorization : `Bearer ${token}`
+        }
+        axios.post(`${BASE_URL}/api/resumes/create-resume`,data,{headers})
         .then((res)=>{
             console.log({resp: res.data});
             setResumeDetails({...resumeDetails,resumeStatusMessage : res.data.message});
