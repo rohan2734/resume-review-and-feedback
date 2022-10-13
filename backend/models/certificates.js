@@ -5,4 +5,4 @@ const certificatesSchema = new mongoose.Schema({
     certificateDescription :  {type:String,required:true}
 })
 
-module.exports = mongoose.model('certificate',certificatesSchema);
+module.exports = mongoose.model('Certificate',certificatesSchema);

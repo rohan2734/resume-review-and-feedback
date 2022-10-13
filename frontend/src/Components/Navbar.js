@@ -8,7 +8,7 @@ import { logout } from '../store/authenticateSlice';
 
 const Navbar =() => {
     
-    const isLogin = useSelector((state) => state.authenticator.isLogin);
+    const isAuthenticated = useSelector((state) => state.authenticator.isAuthenticated);
     const dispatch = useDispatch();
 
     return (
@@ -48,7 +48,7 @@ const Navbar =() => {
                             view feedbacks
                         </NavLink>
                     </li>
-                    {isLogin ? 
+                    {isAuthenticated ? 
                      (
                        
                        <li className={styles.menu__item}>

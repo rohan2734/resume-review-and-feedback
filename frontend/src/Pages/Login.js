@@ -1,7 +1,7 @@
 
 import React,{useState} from 'react';
-import {Link} from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import {Link, Navigate} from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 
 import axios from 'axios';
 
@@ -11,8 +11,10 @@ import styles from "./Login.module.css";
 import { login } from '../store/authenticateSlice';
 
 
-const Login = () => {
+const Login = (props) => {
     const dispatch = useDispatch();
+    const isAuthenticated = useSelector((state) => state.authenticator.isAuthenticated);
+
 
     const [loginDetails,setLoginDetails] = useState({
         emailID : "",
@@ -31,6 +33,8 @@ const Login = () => {
             console.log({resp : res.data});
             setLoginDetails({...loginDetails, loginMessage : res.data.message })
             dispatch(login({jwtToken : res.data.token}))
+        //    { <Navigate to="/create-resume" replace />}
+        //    props.history.push("/create-resume")
         })
         .catch(err => console.log(err))
     }
@@ -45,6 +49,7 @@ const Login = () => {
 
     return (
         <div className={styles.container__parent}>
+           {isAuthenticated &&  <Navigate to="/create-resume" replace />}
             <div className={styles.container}>
                 <h1 className={styles.container__title}>Login</h1>
                 <h3 className={styles.container__subtitle}>Login,Upload your resume and get experts review  as student </h3>

@@ -7,4 +7,4 @@ const projectsSchema = new mongoose.Schema({
     projectEndDate : {type:String,required:true}
 })
 
-module.exports = mongoose.model('project',projectsSchema);
+module.exports = mongoose.model('Project',projectsSchema);

@@ -5,4 +5,4 @@ const skillsSchema = new mongoose.Schema({
     skillLevel : {type:String,required:true}
 })
 
-module.exports = mongoose.model('skill',skillsSchema);
+module.exports = mongoose.model('Skill',skillsSchema);

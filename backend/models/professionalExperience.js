@@ -11,4 +11,4 @@ const professionalExperienceSchema = new mongoose.Schema({
 
 })
 
-module.exports = mongoose.model('professionalExperience',professionalExperienceSchema);
+module.exports = mongoose.model('ProfessionalExperience',professionalExperienceSchema);

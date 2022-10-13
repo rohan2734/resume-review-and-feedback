@@ -8,4 +8,4 @@ const awardsSchema = new mongoose.Schema({
     awardDescription :  {type:String,required:true}
 })
 
-module.exports = mongoose.model('award',awardsSchema);
+module.exports = mongoose.model('Award',awardsSchema);

@@ -117,7 +117,7 @@ const loginUser = async (req,res,next)=>{
     let result = await bcrypt.compare(password,existingUser.password);
     // console.log({result});
     if(result){
-         token = await jwt.sign({exp: Math.floor(Date.now()/1000 + 60*60), data:existingUser,},JWT_KEY);
+         token = await jwt.sign({data:existingUser},JWT_KEY);
     }else{
         return res.json({status:400,message:"user credentials doesnt match, try again"})
     }

@@ -17,12 +17,15 @@ const resumeSchema = new mongoose.Schema({
     //profile details
     candidateProfileDescription: {type:String,required:false},
     //embedded objects
-    professionalExperiences : [{type: mongoose.Schema.Types.ObjectId,ref:'professionalExperience'}],
-    skills : [{type: mongoose.Schema.Types.ObjectId,ref:'skill'}],
-    projects: [{type: mongoose.Schema.Types.ObjectId,ref:'project'}],
-    certificates: [{type: mongoose.Schema.Types.ObjectId,ref:'certificate'}],
-    awards: [{type: mongoose.Schema.Types.ObjectId,ref:'award'}],
-    education: {type: mongoose.Schema.Types.ObjectId,ref:'education'}
+    professionalExperiences : [{type: mongoose.Schema.Types.ObjectId,ref:'ProfessionalExperience'}],
+    skills : [{type: mongoose.Schema.Types.ObjectId,ref:'Skill'}],
+    projects: [{type: mongoose.Schema.Types.ObjectId,ref:'Project'}],
+    certificates: [{type: mongoose.Schema.Types.ObjectId,ref:'Certificate'}],
+    awards: [{type: mongoose.Schema.Types.ObjectId,ref:'Award'}],
+    education: {type: mongoose.Schema.Types.ObjectId,ref:'Education'},
+
+    //belongs to user
+    user: {type:mongoose.Schema.Types.ObjectId,ref:'User'}
 })
 
-module.exports = mongoose.model('resume',resumeSchema);
+module.exports = mongoose.model('Resume',resumeSchema);
