@@ -58,3 +58,13 @@
 .container__submit:hover{
     cursor: pointer;
 }
+
+.submit_for_review{
+    color: white;
+    border : none;
+    border-radius: 5px;
+    padding:10px;
+    font-size: 1rem;
+    font-weight: 400;
+    background-color: #5BB318;
+}

@@ -1,6 +1,6 @@
 //models
 const Resume = require("../models/resume");
-// const User = require("../models/user");
+const User = require("../models/user");
 
 
 const jwt = require("jsonwebtoken");
@@ -41,4 +41,26 @@ const createResume = async (req,res) => {
 
 }
 
+const getResumes =  async (req,res) => {
+    // const userID = req.body.user._id;
+    var user = req.body.user;
+    // console.log({user});
+
+    if(!user){
+        return res.json({status:400,message: "user is undefined"})
+    }
+    var resumes ;
+    
+    try{
+        resumes =  await User.find({user : user._id})
+    }catch(err){
+        console.log(err);
+    }
+
+    return res.json({status:200,message:"resumes fetched succesfully",resumes})
+       
+}
+
+
 exports.createResume = createResume;
+exports.getResumes = getResumes;

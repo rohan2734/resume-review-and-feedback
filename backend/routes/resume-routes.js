@@ -10,5 +10,6 @@ const resumeControllers = require("../controllers/resume-controllers");
 //     res.json({message:"get request in resumes"})
 // })
 router.post("/create-resume",middleWares.authenticateToken , resumeControllers.createResume);
+router.get("/get-resumes",middleWares.authenticateToken, resumeControllers.getResumes);
 
 module.exports = router;
