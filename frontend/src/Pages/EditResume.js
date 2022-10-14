@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const EditResume = ()  => {
-    const {resumeID} = useParams();
-    
+    const {resumeId} = useParams();
+
+    const resume = useState({
+
+    })
+
     return (
         <div>
             

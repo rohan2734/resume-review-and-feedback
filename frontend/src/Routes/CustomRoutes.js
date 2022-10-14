@@ -23,7 +23,7 @@ const CustomRoutes = () => {
                     <CreateResume />
                 </ProtectedRoute>
             }/>
-            <Route exact path="/edit-resume/:resumeID" element={
+            <Route exact path="/edit-resume/:resumeId" element={
                 <ProtectedRoute>
                     <EditResume />
                 </ProtectedRoute>

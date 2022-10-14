@@ -11,5 +11,6 @@ const resumeControllers = require("../controllers/resume-controllers");
 // })
 router.post("/create-resume",middleWares.authenticateToken , resumeControllers.createResume);
 router.get("/get-resumes",middleWares.authenticateToken, resumeControllers.getResumes);
+router.get("/get-resume/:resumeId",middleWares.authenticateToken,resumeControllers.getResumeById);
 
 module.exports = router;

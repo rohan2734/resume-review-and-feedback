@@ -61,6 +61,24 @@ const getResumes =  async (req,res) => {
        
 }
 
+const getResumeById = async (req,res ) =>{
+    const {resumeId} = req.params;
+
+    var resume;
+    try{
+        resume = await Resume.findOne({_id:resumeId}) 
+    }catch(err){
+        console.log(err);
+    }
+
+    if(resume == null){
+        return res.json({status:400,message:"resume not found"})
+    }
+
+    return res.json({status:200,resume})
+} 
+
 
 exports.createResume = createResume;
 exports.getResumes = getResumes;
+exports.getResumeById = getResumeById;
