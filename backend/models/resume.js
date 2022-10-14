@@ -4,18 +4,19 @@ const resumeSchema = new mongoose.Schema({
     resumeName : {type:String,required:true},
     //candidate details
     //person details
-    candidateFullName : {type:String,required:false},
-    candidatePhoneNumber:{type:String,required:false},
-    candidateAddress: {type:String,required:false},
-    candidateGender:{type:String,required:false},
+    fullName : {type:String,required:false},
+    phoneNumber:{type:String,required:false},
+    address: {type:String,required:false},
+    gender:{type:String,required:false},
+    profilePicURL : {type:String,required:false},
     //social links
-    candidateLinkedinURL : {type:String,required:false},
-    candidateGithubURL : {type:String,required:false},
-    candidateMediumURL : {type:String,required:false},
-    candidateWebsiteURL: {type:String,required:false},
+    linkedinURL : {type:String,required:false},
+    githubURL : {type:String,required:false},
+    mediumURL : {type:String,required:false},
+    websiteURL: {type:String,required:false},
 
     //profile details
-    candidateProfileDescription: {type:String,required:false},
+    profileDescription: {type:String,required:false},
     //embedded objects
     professionalExperiences : [{type: mongoose.Schema.Types.ObjectId,ref:'ProfessionalExperience'}],
     skills : [{type: mongoose.Schema.Types.ObjectId,ref:'Skill'}],
