@@ -1,0 +1,37 @@
+.container__parent{
+    text-decoration: none;
+}
+.container{
+    display: flex;
+    background-color: #EAE509;
+    border-radius: 5px;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.container__title{
+    color: white;
+    margin-left: 1.5rem;    
+}
+
+.container__title:hover{
+    border-bottom: 2px solid white;
+    cursor: pointer;
+}
+.container__icons{
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 1.5rem;
+    cursor: pointer;
+}
+
+.container__icon{
+    /* font-size: 2rem; */
+    width: 2rem;
+    height: 2rem;
+    padding: 0 5px;
+    
+   
+}

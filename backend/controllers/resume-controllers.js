@@ -52,7 +52,7 @@ const getResumes =  async (req,res) => {
     var resumes ;
     
     try{
-        resumes =  await User.find({user : user._id})
+        resumes =  await Resume.find({user : user._id})
     }catch(err){
         console.log(err);
     }

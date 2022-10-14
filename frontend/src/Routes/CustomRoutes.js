@@ -8,6 +8,7 @@ import SignupAsExpert from '../Pages/SignupAsExpert';
 import SignupAsStudent from '../Pages/SignupAsStudent';
 import CreateResume from '../Pages/CreateResume';
 import ProtectedRoute from '../Components/ProtectedRoute';
+import EditResume from '../Pages/EditResume';
 
 const CustomRoutes = () => {
     return (
@@ -22,6 +23,11 @@ const CustomRoutes = () => {
                     <CreateResume />
                 </ProtectedRoute>
             }/>
+            <Route exact path="/edit-resume/:resumeID" element={
+                <ProtectedRoute>
+                    <EditResume />
+                </ProtectedRoute>
+            } />
            
         </Routes>
     );

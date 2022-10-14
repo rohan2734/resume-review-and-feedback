@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import styles from "./CreateResume.module.css";
 import { BASE_URL } from '../Keys/Keys';
+import ResumeCardRectangularBox from '../Components/ResumeCardRectangularBox';
 
 const CreateResume = () => {
 
@@ -58,6 +59,8 @@ const CreateResume = () => {
         <div className={styles.container__parent}>
             <div className={styles.container}>
             <h1 className={styles.container__title}> Resumes</h1>
+
+            {console.log({resumeDetails})}
            { (resumeDetails.resumes.length ==0 ) ?
             (
                 <>
@@ -75,10 +78,17 @@ const CreateResume = () => {
             ):
             (
                 <>
-                {/* {resumes.map(())} */}
+                {resumeDetails?.resumes?.map((resume) => {
+                    return (
+                        <ResumeCardRectangularBox key={resume._id} resume={resume}/>
+                    )
+                   
+                })}
+                    
                     <button className={styles.submit_for_review}>Get Experts review for your resume now</button>
                 </>
             )}
+            
         </div>
         </div>
         
