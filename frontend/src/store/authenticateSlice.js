@@ -12,7 +12,7 @@ export const authenticateSlice = createSlice({
             console.log({jwtToken : action.payload.jwtToken});
             state.jwtToken = action.payload.jwtToken;
             state.isAuthenticated = true;
-            localStorage.setItem("token",JSON.stringify(action.payload.jwtToken))
+            localStorage.setItem("token",JSON.stringify(action.payload.jwtToken).slice(1,-1))
         },
         logout: (state) => {
             state.jwtToken = null;

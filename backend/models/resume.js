@@ -5,6 +5,7 @@ const resumeSchema = new mongoose.Schema({
     //candidate details
     //person details
     fullName : {type:String,required:false},
+    jobTitle :  {type:String,required:false},
     phoneNumber:{type:String,required:false},
     address: {type:String,required:false},
     gender:{type:String,required:false},

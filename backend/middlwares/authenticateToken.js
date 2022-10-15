@@ -7,7 +7,7 @@ const authenticateToken =  async (req,res,next) => {
     // console.log({authHeader});
     var token = authHeader && authHeader.split(' ')[1]
 
-    // console.log({token8: token});
+    // console.log({token10: token});
 
     if(token == null){
         return res.json({status:400,message:"token not found"})

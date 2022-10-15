@@ -20,7 +20,7 @@ const CreateResume = () => {
         var token = localStorage.getItem("token");
         // console.log({token20f: token});
 
-        token = token.slice(1,-1)
+        // token = token.slice(1,-1)
       
         const headers ={ 
             authorization : `Bearer ${token}`
@@ -28,7 +28,7 @@ const CreateResume = () => {
 
         axios.get(`${BASE_URL}/api/resumes/get-resumes`,{headers})
         .then( res =>{
-            console.log({data: res.data});
+            // console.log({data: res.data});
             setResumeDetails({...resumeDetails,resumes : res.data.resumes})
         })
         .catch(err => {
@@ -60,7 +60,7 @@ const CreateResume = () => {
             <div className={styles.container}>
             <h1 className={styles.container__title}> Resumes</h1>
 
-            {console.log({resumeDetails})}
+            {/* {console.log({resumeDetails})} */}
            { (resumeDetails.resumes.length ==0 ) ?
             (
                 <>

@@ -8,7 +8,7 @@ import deleteIcon from "../icons/delete_icon.png";
 
 const  ResumeCardRectangularBox = ({resume}) => {
    
-    console.log({resume});
+    // console.log({resume});
     return (
         // <Link to={`/edit-resume/${resume._id}`} className={styles.container__parent}>
             <div className={styles.container} >

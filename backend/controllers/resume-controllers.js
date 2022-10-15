@@ -114,9 +114,9 @@ const editResumeByIdPerson =  async (req,res)=>{
         return res.json({status:400,message:"profile pic is required"})
     }
 
-    const {resumeId,fullName,address,gender,emailID,phoneNumber} = req.body;
+    const {resumeId,resumeName,fullName,address,gender,emailID,phoneNumber} = req.body;
 
-    if(! (resumeId && fullName && address && gender && emailID && phoneNumber!=null ) ){
+    if(! (resumeId && resumeName &&fullName && address && gender && emailID && phoneNumber!=null ) ){
         return res.json({status:400,message:"all fields are required"})
     }
     var uploadedProfilePic;
@@ -142,10 +142,15 @@ const editResumeByIdPerson =  async (req,res)=>{
     }catch(err){
         console.log(err);
     }
+
+    if((!existingResume)){
+        return res.json({status:400,message:"resume not found"})
+    }
     var linkedinURL;
     var githubURL;
     var mediumURL;
     var websiteURL;
+    var jobTitle;
 
     if(req.body.linkedinURL!=null){
         linkedinURL = req.body.linkedinURL
@@ -164,9 +169,14 @@ const editResumeByIdPerson =  async (req,res)=>{
         websiteURL = req.body.websiteURL;
         existingResume = {...existingResume,websiteURL}
     }
+    if(req.body.jobTitle!=null){
+        jobTitle = req.body.jobTitle;
+        existingResume={...existingResume,jobTitle}
+    }
     // console.log({picLink : uploadedProfilePic});
     existingResume = {
         ...existingResume,
+        resumeName,
         fullName,
         address,
         gender: gender.toUpperCase(),
