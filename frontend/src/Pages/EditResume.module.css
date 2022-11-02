@@ -23,3 +23,25 @@
     font-weight: 600;
     
 }
+.resume__edit_card{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 0.8rem;
+    align-items: center;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+.resume__edit_card_icon{
+    height: 30px;
+    width: 30px;
+}
+.resume__edit_card_title{
+    margin:0;
+    text-align: left;
+    width: 80%;
+}
+.resume__edit_card_dropdown{
+    height: 15px;
+    width: 15px;
+}

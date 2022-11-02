@@ -15,6 +15,17 @@ import EditResumeNameDetails from '../Components/EditResumeNameDetails';
 // import phoneIcon from "../icons/phone_icon.png";
 // import locationIcon from "../icons/location_icon.png";
 
+import editResumeDropdown from "../icons/edit_resume_dropdown.png";
+import profileIcon from "../icons/profile_icon.png";
+import professionalExperienceIcon from "../icons/professional_experience_icon.png";
+import skillsIcon from "../icons/skills_icon.png";
+import educationIcon from "../icons/education_icon.png";
+import projectsIcon from "../icons/projects_icon.png";
+import awardsIcon from "../icons/awards_icon.png";
+import interestsIcon from "../icons/interests_icon.png";
+import certificatesIcon from "../icons/certificates_icon.png";
+import languagesIcon from "../icons/languages_icon.png";
+
 
 const EditResume = ()  => {
     const {resumeId} = useParams();
@@ -98,11 +109,71 @@ const EditResume = ()  => {
             <div className={styles.resume__editor_and_preview}>
                 <div className={styles.resume__editor}>
                     <EditResumeNameDetails resume={resumeDetails}/>
+                     {/* edit profile */}
+                    <div className={styles.resume__edit_card}>
+                        <img src={profileIcon} className={styles.resume__edit_card_icon}/>
+                        <h3 className={styles.resume__edit_card_title}>Profile</h3>
+                        <img  className={styles.resume__edit_card_dropdown} src={editResumeDropdown} />
+                    </div>
+
+                     {/* edit professional experience */}
+                     <div className={styles.resume__edit_card}>
+                        <img src={professionalExperienceIcon} className={styles.resume__edit_card_icon}/>
+                        <h3 className={styles.resume__edit_card_title}>Professional Experience</h3>
+                        <img  className={styles.resume__edit_card_dropdown} src={editResumeDropdown} />
+                    </div>
+
+                      {/* edit skills */}
+                      <div className={styles.resume__edit_card}>
+                        <img src={skillsIcon} className={styles.resume__edit_card_icon}/>
+                        <h3 className={styles.resume__edit_card_title}>Skils</h3>
+                        <img  className={styles.resume__edit_card_dropdown} src={editResumeDropdown} />
+                    </div>
+
+                     {/* edit education */}
+                     <div className={styles.resume__edit_card}>
+                        <img src={educationIcon} className={styles.resume__edit_card_icon}/>
+                        <h3 className={styles.resume__edit_card_title}>Education</h3>
+                        <img  className={styles.resume__edit_card_dropdown} src={editResumeDropdown} />
+                    </div>
+
+                     {/* edit awards */}
+                     <div className={styles.resume__edit_card}>
+                        <img src={awardsIcon} className={styles.resume__edit_card_icon}/>
+                        <h3 className={styles.resume__edit_card_title}>Awards</h3>
+                        <img  className={styles.resume__edit_card_dropdown} src={editResumeDropdown} />
+                    </div>
+
+                     {/* edit interests */}
+                     <div className={styles.resume__edit_card}>
+                        <img src={interestsIcon} className={styles.resume__edit_card_icon}/>
+                        <h3 className={styles.resume__edit_card_title}>Interests</h3>
+                        <img  className={styles.resume__edit_card_dropdown} src={editResumeDropdown} />
+                    </div>
+
+                     {/* edit certificates */}
+                     <div className={styles.resume__edit_card}>
+                        <img src={certificatesIcon} className={styles.resume__edit_card_icon}/>
+                        <h3 className={styles.resume__edit_card_title}>Certificates</h3>
+                        <img  className={styles.resume__edit_card_dropdown} src={editResumeDropdown} />
+                    </div>
+
+                     {/* edit languages */}
+                     <div className={styles.resume__edit_card}>
+                        <img src={languagesIcon} className={styles.resume__edit_card_icon}/>
+                        <h3 className={styles.resume__edit_card_title}>Languages</h3>
+                        <img  className={styles.resume__edit_card_dropdown} src={editResumeDropdown} />
+                    </div>
+
+                    
+
+
                 </div>
                 <div className={styles.resume__preview}>
                     resume preview
                 </div>
             </div>
+           
         </div>
     );
 }
