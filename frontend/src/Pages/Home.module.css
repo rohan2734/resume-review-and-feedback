@@ -53,6 +53,7 @@
 }
 .step_content{
     width: 48%;
+    padding-top: 3rem;
 }
 .step_content__title{
     color : #7DCE13;
