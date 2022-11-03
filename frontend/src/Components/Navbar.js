@@ -31,7 +31,7 @@ const Navbar =() => {
                         </NavLink>
                     </li>
                     <li className={styles.menu__item}>
-                        <NavLink to='/my-resume'
+                        <NavLink to='/create-resume'
                             className={ ({isActive}) => (isActive ? `${styles.active} ` : styles.menu__item) }>
                             my resume 
                         </NavLink>
