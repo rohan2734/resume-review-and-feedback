@@ -165,9 +165,6 @@ const EditResume = ()  => {
                         <img  className={styles.resume__edit_card_dropdown} src={editResumeDropdown} />
                     </div>
 
-                    
-
-
                 </div>
                 <div className={styles.resume__preview}>
                     resume preview

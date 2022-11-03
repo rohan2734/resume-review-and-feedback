@@ -42,7 +42,7 @@ const Home = () => {
                 {/* step2 */}
                 <div className={styles.step_container}>
                      <div className={styles.image_container}>
-                        <img src={hw_create_resume} className={styles.step_image} />
+                        <img src={hw_fill_resume} className={styles.step_image} />
                     </div>
                    
                     
@@ -78,9 +78,9 @@ const Home = () => {
                         <p className={styles.step__count}>03</p>
                         <div className={styles.step__line}></div>
                     </div>
-                    {/* <img src={}/> */}
+             
                     <div className={styles.image_container}>
-                        <img src={hw_create_resume} className={styles.step_image} />
+                        <img src={hw_upload} className={styles.step_image} />
                     </div>
                 </div>
             </div>
