@@ -1,4 +1,68 @@
 .edit_namedetails__container {
   background: white;
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+.namedetails_title {
+  margin: 0 0 10px 0;
+  font-weight: 1000;
+  font-size: 1.5rem;
+}
+.namedetails_subtitle {
+  margin: 0 0 10px 0;
+}
+
+.inputs_with_edit_image {
+  display: flex;
+  justify-content: space-between;
+}
+.edit_image_icon {
+  cursor: pointer;
+}
+.edit_image_input {
+  display: none;
+}
+.inputs_remaining {
+  display: flex;
+  justify-content: space-between;
+}
+.input_container {
+  margin: 10px 0;
+}
+.input_label {
+  display: block;
+  font-size: 12px;
+}
+.input_item {
+  background-color: #f3f4f6;
+  border: 0px;
+  border-radius: 5px;
+  padding: 8px;
+}
+.links_subcontainer {
+  display: flex;
+  justify-content: space-between;
+}
+.buttons {
+  text-align: right;
+  margin: 10px 0;
+}
+.buttons_cancel {
+  border: 0;
+  background-color: transparent;
   padding: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.buttons_save {
+  border: 0;
+  padding: 10px 40px;
+  border-radius: 5px;
+  color: white;
+  background-color: #5bb318;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
 }

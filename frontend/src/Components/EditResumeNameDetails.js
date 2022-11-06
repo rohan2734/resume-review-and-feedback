@@ -7,7 +7,11 @@ import emailIcon from "../icons/email_icon.png";
 import phoneIcon from "../icons/phone_icon.png";
 import locationIcon from "../icons/location_icon.png";
 
-const EditResumeNameDetails = ({ resume }) => {
+const EditResumeNameDetails = ({
+  resume,
+  setParentsEditStatus,
+  parentsEditStatus,
+}) => {
   console.log({ resume });
   return (
     <>
@@ -17,7 +21,16 @@ const EditResumeNameDetails = ({ resume }) => {
             <p className={styles.name}>Andrew Kim</p>
             <p className={styles.jobtitle}>Financial Analyst</p>
           </div>
-          <img src={editIconBlack} className={styles.editIcon} />
+          <img
+            src={editIconBlack}
+            className={styles.editIcon}
+            onClick={() =>
+              setParentsEditStatus((prevState) => ({
+                ...prevState,
+                nameDetails: !prevState.nameDetails,
+              }))
+            }
+          />
         </div>
         <div className={styles.email_details_and_profilepic}>
           <div className={styles.email_details}>

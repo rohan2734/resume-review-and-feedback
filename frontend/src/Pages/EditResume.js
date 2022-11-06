@@ -54,7 +54,7 @@ const EditResume = () => {
   });
 
   const [editStatus, setEditStatus] = useState({
-    nmeDetails: false,
+    nameDetails: false,
     professionalExperience: false,
     skills: false,
     education: false,
@@ -117,8 +117,18 @@ const EditResume = () => {
       <div className={styles.resume__name}>{resumeDetails?.resumeName}</div>
       <div className={styles.resume__editor_and_preview}>
         <div className={styles.resume__editor}>
-          <EditResumeNameDetails resume={resumeDetails} />
-          <EditResumeNameDetailsOpen />
+          {!editStatus.nameDetails ? (
+            <EditResumeNameDetails
+              resume={resumeDetails}
+              setParentsEditStatus={setEditStatus}
+              parentsEditStatus={editStatus}
+            />
+          ) : (
+            <EditResumeNameDetailsOpen
+              resume={resumeDetails}
+              setParentsEditStatus={setEditStatus}
+            />
+          )}
 
           {/* edit profile */}
           <ResumeEditCardClosed title="Profile" cardIcon={profileIcon} />
