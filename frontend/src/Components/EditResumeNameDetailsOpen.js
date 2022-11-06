@@ -26,7 +26,7 @@ const EditResumeNameOpen = ({ resume, setParentsEditStatus }) => {
                 <input className={styles.input_item} value={"Full Name"} />
               </div>
             </div>
-            <div className={styles.edit_image}>
+            <div className={styles.edit_image_container}>
               <img
                 src={defaultProfilePic}
                 className={styles.namedetails_image}
