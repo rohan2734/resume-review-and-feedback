@@ -41,7 +41,7 @@ const EditResumeNameOpen = ({ resume, setParentsEditStatus }) => {
       });
     }
 
-    console.log({ resumeNameDetails });
+    // console.log({ resumeNameDetails });
   };
   var { resumeId } = useParams();
   const formSubmitHandler = (e) => {
@@ -59,7 +59,8 @@ const EditResumeNameOpen = ({ resume, setParentsEditStatus }) => {
     formData.append("linkedinURL", resumeNameDetails.linkedinURL);
     formData.append("mediumURL", resumeNameDetails.mediumURL);
     formData.append("websiteURL", resumeNameDetails.websiteURL);
-    if (resumeNameDetails.profilePic == null) {
+    // console.log({ profilePic: resumeNameDetails.profilePic });
+    if (resumeNameDetails.profilePic.length == 0) {
       formData.append("profilePicURL", resumeNameDetails.profilePicURL);
     }
 
@@ -70,9 +71,9 @@ const EditResumeNameOpen = ({ resume, setParentsEditStatus }) => {
     };
     // console.log({ formData });
 
-    for (let [key, value] of formData) {
-      console.log(`${key}:${value}`);
-    }
+    // for (let [key, value] of formData) {
+    //   console.log(`${key}:${value}`);
+    // }
     // https://stackoverflow.com/questions/17066875/how-to-inspect-formdata
     // axios
     //   .patch(
@@ -95,7 +96,15 @@ const EditResumeNameOpen = ({ resume, setParentsEditStatus }) => {
       data: formData,
       headers: headers,
     })
-      .then((res) => console.log({ res }))
+      .then((res) => {
+        // console.log({ res });
+        if (res.data.status == 200) {
+          setParentsEditStatus((prevState) => ({
+            ...prevState,
+            nameDetails: !prevState.nameDetails,
+          }));
+        }
+      })
       .catch((err) => console.log(err));
   };
   return (
@@ -151,9 +160,12 @@ const EditResumeNameOpen = ({ resume, setParentsEditStatus }) => {
                 <img
                   // src={defaultProfilePic}
                   src={
-                    resume.profilePicURL
-                      ? resume.profilePicURL
-                      : defaultProfilePic
+                    // resume.profilePicURL
+                    //   ? resume.profilePicURL
+                    //   : defaultProfilePic
+                    resumeNameDetails.profilePicURL
+                      ? resumeNameDetails.profilePicURL
+                      : resumeNameDetails.profilePic
                   }
                   className={styles.namedetails_image}
                 />
