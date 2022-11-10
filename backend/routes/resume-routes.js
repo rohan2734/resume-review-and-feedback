@@ -10,9 +10,26 @@ const resumeControllers = require("../controllers/resume-controllers");
 //     // res.send("connected to resume controllers")
 //     res.json({message:"get request in resumes"})
 // })
-router.post("/create-resume",middleWares.authenticateToken , resumeControllers.createResume);
-router.get("/get-resumes",middleWares.authenticateToken, resumeControllers.getResumes);
-router.get("/get-resume/:resumeId",middleWares.authenticateToken,resumeControllers.getResumeById);
-router.patch("/edit-resume-by-person",middleWares.authenticateToken,multerUploader.single("profilePic"), resumeControllers.editResumeByIdPerson);
+router.post(
+  "/create-resume",
+  middleWares.authenticateToken,
+  resumeControllers.createResume
+);
+router.get(
+  "/get-resumes",
+  middleWares.authenticateToken,
+  resumeControllers.getResumes
+);
+router.get(
+  "/get-resume/:resumeId",
+  middleWares.authenticateToken,
+  resumeControllers.getResumeById
+);
+router.patch(
+  "/edit-resume-by-person",
+  middleWares.authenticateToken,
+  multerUploader.single("profilePic"),
+  resumeControllers.editResumeNameDetailsByIdPerson
+);
 
 module.exports = router;
