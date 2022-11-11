@@ -7,8 +7,9 @@ import styles from "./EditResume.module.css";
 
 import { BASE_URL } from "../Keys/Keys";
 
-import EditResumeNameDetails from "../Components/EditResumeNameDetails";
+import EditResumeNameDetailsClosed from "../Components/EditResumeNameDetailsClosed";
 import EditResumeNameDetailsOpen from "../Components/EditResumeNameDetailsOpen";
+import EditResumeProfileOpen from "../Components/EditResumeProfileOpen";
 
 // import editIconBlack from "../icons/edit_pencil_icon__black.png"
 // import defaultProfilePic from "../images/profile_pic.png"
@@ -16,6 +17,7 @@ import EditResumeNameDetailsOpen from "../Components/EditResumeNameDetailsOpen";
 // import phoneIcon from "../icons/phone_icon.png";
 // import locationIcon from "../icons/location_icon.png";
 
+// icons
 import profileIcon from "../icons/profile_icon.png";
 import professionalExperienceIcon from "../icons/professional_experience_icon.png";
 import skillsIcon from "../icons/skills_icon.png";
@@ -36,6 +38,10 @@ const EditResume = () => {
     phoneNumber: "",
     address: "",
     gender: "",
+    jobTitle: "",
+    location: "",
+    emailID: "",
+    profilePic: "",
     profilePicURL: "",
     linkedinURL: "",
     githubURL: "",
@@ -66,7 +72,7 @@ const EditResume = () => {
 
   useEffect(() => {
     var token = localStorage.getItem("token");
-    console.log({ token20f: token });
+    // console.log({ token20f: token });
 
     // token = token.slice(1,-1)
 
@@ -77,7 +83,7 @@ const EditResume = () => {
     axios
       .get(`${BASE_URL}/api/resumes/get-resume/${resumeId}`, { headers })
       .then((res) => {
-        console.log({ resData: res.data });
+        // console.log({ resData: res.data });
         // setResumeDetails({
         //     ...resumeDetails,
         //     resumeName : res.data.resume.resumeName,
@@ -107,31 +113,44 @@ const EditResume = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, []);
 
   return (
     <div className={styles.container}>
-      {console.log({ resumeDetails })}
+      {/* {console.log({ resumeDetails })} */}
       <div className={styles.resume__name}>{resumeDetails?.resumeName}</div>
       <div className={styles.resume__editor_and_preview}>
         <div className={styles.resume__editor}>
           {!editStatus.nameDetails ? (
-            <EditResumeNameDetails
+            <EditResumeNameDetailsClosed
               resume={resumeDetails}
               setParentsEditStatus={setEditStatus}
-              parentsEditStatus={editStatus}
             />
           ) : (
             <EditResumeNameDetailsOpen
               resume={resumeDetails}
               setParentsEditStatus={setEditStatus}
+              setParentsResumeDetails={setResumeDetails}
             />
           )}
 
           {/* edit profile */}
-          <ResumeEditCardClosed title="Profile" cardIcon={profileIcon} />
+          {!editStatus.profileDescription ? (
+            <ResumeEditCardClosed
+              title="Profile"
+              cardIcon={profileIcon}
+              setParentsEditStatus={setEditStatus}
+              editStatusKey="profileDescription"
+            />
+          ) : (
+            <EditResumeProfileOpen
+              resume={resumeDetails}
+              setParentsEditStatus={setEditStatus}
+              setParentsResumeDetails={setResumeDetails}
+            />
+          )}
 
           {/* <div className={styles.resume__edit_card}>
                         <img src={profileIcon} className={styles.resume__edit_card_icon}/>

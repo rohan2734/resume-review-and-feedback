@@ -89,7 +89,7 @@ const getResumeById = async (req, res) => {
   return res.json({ status: 200, resume });
 };
 
-const editResumeNameDetailsByIdPerson = async (req, res) => {
+const editResumeNameDetails = async (req, res) => {
   const profilePic = req.file;
   console.log({ profilePic });
 
@@ -224,7 +224,7 @@ const editResumeNameDetailsByIdPerson = async (req, res) => {
 
   return res.json({
     status: 200,
-    message: "updated the resume succesfully",
+    message: "updated the name details of resume succesfully",
     updatedResume,
   });
   // return res.json({fields,files})
@@ -232,7 +232,46 @@ const editResumeNameDetailsByIdPerson = async (req, res) => {
   // return res.json({message:"hi"})
   // return res.json({profilePic,profilePicURL})
 };
+
+const editResumeProfileDescription = async (req, res) => {
+  var { profileDescription, resumeId } = req.body;
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.find({ _id: resumeId });
+  } catch (err) {
+    console.log(err);
+  }
+
+  existingResume = {
+    ...existingResume,
+    profileDescription,
+  };
+
+  var updatedResume;
+
+  try {
+    updatedResume = await Resume.findByIdAndUpdate(
+      { _id: resumeId },
+      existingResume,
+      { new: true }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+
+  console.log({ updatedResume });
+
+  return res.json({
+    status: 200,
+    message: "updated the profile description of resume succesfully",
+    updatedResume,
+  });
+};
+
 exports.createResume = createResume;
 exports.getResumes = getResumes;
 exports.getResumeById = getResumeById;
-exports.editResumeNameDetailsByIdPerson = editResumeNameDetailsByIdPerson;
+exports.editResumeNameDetails = editResumeNameDetails;
+exports.editResumeProfileDescription = editResumeProfileDescription;

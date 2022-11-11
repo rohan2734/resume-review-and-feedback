@@ -26,10 +26,15 @@ router.get(
   resumeControllers.getResumeById
 );
 router.patch(
-  "/edit-resume-by-person",
+  "/edit-resume-name-details",
   middleWares.authenticateToken,
   multerUploader.single("profilePic"),
-  resumeControllers.editResumeNameDetailsByIdPerson
+  resumeControllers.editResumeNameDetails
 );
 
+router.patch(
+  "/edit-resume-profile-description",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeProfileDescription
+);
 module.exports = router;

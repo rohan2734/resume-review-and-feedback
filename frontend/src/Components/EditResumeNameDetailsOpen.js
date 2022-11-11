@@ -7,7 +7,12 @@ import axios from "axios";
 import { BASE_URL } from "../Keys/Keys";
 import { useParams } from "react-router-dom";
 
-const EditResumeNameOpen = ({ resume, setParentsEditStatus }) => {
+const EditResumeNameOpen = ({
+  resume,
+  setParentsEditStatus,
+  setParentsResumeDetails,
+}) => {
+  // setParentsResumeDetails={setResumeDetails}
   const [resumeNameDetails, setResumeNameDetails] = useState({
     // profilePic: resume.profilePicURL ? resume.profilePicURL : "",
     profilePic: "",
@@ -92,16 +97,21 @@ const EditResumeNameOpen = ({ resume, setParentsEditStatus }) => {
     formData.append("resumeId", resumeId);
     axios({
       method: "PATCH",
-      url: `${BASE_URL}/api/resumes/edit-resume-by-person`,
+      url: `${BASE_URL}/api/resumes/edit-resume-name-details`,
       data: formData,
       headers: headers,
     })
       .then((res) => {
-        // console.log({ res });
+        console.log({ res });
         if (res.data.status == 200) {
           setParentsEditStatus((prevState) => ({
             ...prevState,
             nameDetails: !prevState.nameDetails,
+          }));
+
+          setParentsResumeDetails((prevState) => ({
+            ...prevState,
+            ...resumeNameDetails,
           }));
         }
       })
