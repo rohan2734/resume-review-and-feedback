@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./ResumeEditCardClosed.module.css";
 
 // import editResumeDropdown from "../icons/edit_resume_dropdown.png";
-import editResumeDropdown from "../icons/edit_resume_dropdown.png";
+import editResumeDropdown from "../../icons/edit_resume_dropdown.png";
 
 const ResumeEditCardClosed = ({
   title,

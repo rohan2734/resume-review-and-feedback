@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./EditResumeNameDetailsClosed.module.css";
 
-import editIconBlack from "../icons/edit_pencil_icon__black.png";
-import defaultProfilePic from "../images/profile_pic.png";
-import emailIcon from "../icons/email_icon.png";
-import phoneIcon from "../icons/phone_icon.png";
-import locationIcon from "../icons/location_icon.png";
+import editIconBlack from "../../icons/edit_pencil_icon__black.png";
+import defaultProfilePic from "../../images/profile_pic.png";
+import emailIcon from "../../icons/email_icon.png";
+import phoneIcon from "../../icons/phone_icon.png";
+import locationIcon from "../../icons/location_icon.png";
 
 const EditResumeNameDetails = ({ resume, setParentsEditStatus }) => {
   // console.log({ resume });

@@ -7,15 +7,11 @@ import styles from "./EditResume.module.css";
 
 import { BASE_URL } from "../Keys/Keys";
 
-import EditResumeNameDetailsClosed from "../Components/EditResumeNameDetailsClosed";
-import EditResumeNameDetailsOpen from "../Components/EditResumeNameDetailsOpen";
-import EditResumeProfileOpen from "../Components/EditResumeProfileOpen";
-
-// import editIconBlack from "../icons/edit_pencil_icon__black.png"
-// import defaultProfilePic from "../images/profile_pic.png"
-// import emailIcon from "../icons/email_icon.png";
-// import phoneIcon from "../icons/phone_icon.png";
-// import locationIcon from "../icons/location_icon.png";
+//resume edit card components
+import EditResumeNameDetailsClosed from "../Components/EditResume/EditResumeNameDetailsClosed";
+import EditResumeNameDetailsOpen from "../Components/EditResume/EditResumeNameDetailsOpen";
+import EditResumeProfileOpen from "../Components/EditResume/EditResumeProfileOpen";
+import ResumeEditCardClosed from "../Components/EditResume/ResumeEditCardClosed";
 
 // icons
 import profileIcon from "../icons/profile_icon.png";
@@ -27,7 +23,7 @@ import awardsIcon from "../icons/awards_icon.png";
 import interestsIcon from "../icons/interests_icon.png";
 import certificatesIcon from "../icons/certificates_icon.png";
 import languagesIcon from "../icons/languages_icon.png";
-import ResumeEditCardClosed from "../Components/ResumeEditCardClosed";
+import EditResumeProfessionalExperienceOpen from "../Components/EditResume/EditResumeProfessionalExperienceOpen";
 
 const EditResume = () => {
   const { resumeId } = useParams();
@@ -83,30 +79,6 @@ const EditResume = () => {
     axios
       .get(`${BASE_URL}/api/resumes/get-resume/${resumeId}`, { headers })
       .then((res) => {
-        // console.log({ resData: res.data });
-        // setResumeDetails({
-        //     ...resumeDetails,
-        //     resumeName : res.data.resume.resumeName,
-        //     fullName: res.data.resume.fullName,
-        //     phoneNumber:res.data.resume.phoneNumber,
-        //     address: res.data.resume.address,
-        //     gender: res.data.resume.gender,
-        //     profilePicURL: res.data.resume.profilePicURL,
-        //     linkedinURL: res.data.resume.linkedinURL,
-        //     githubURL : res.data.resume.githubURL,
-        //     mediumURL : res.data.resume.mediumURL,
-        //     websiteURL: res.data.resume.websiteURL,
-        //     profileDescription: res.data.resume.profileDescription,
-        //     //embedded objects
-        //     professionalExperiences : res.data.resume.professionalExperiences,
-        //     skills : res.data.resume.skills,
-        //     projects: res.data.resume.projects,
-        //     certificates: res.data.resume.certificates,
-        //     awards: res.data.resume.awards,
-        //     education: res.data.resume.education,
-        //     //belongs to user
-        //     user: res.data.resume.user
-        // })
         setResumeDetails({
           ...resumeDetails,
           ...res.data.resume,
@@ -162,6 +134,11 @@ const EditResume = () => {
           <ResumeEditCardClosed
             title="Professional Experience"
             cardIcon={professionalExperienceIcon}
+          />
+          <EditResumeProfessionalExperienceOpen
+            resume={resumeDetails}
+            setParentsEditStatus={setEditStatus}
+            setParentsResumeDetails={setResumeDetails}
           />
           {/* <div className={styles.resume__edit_card}>
                         <img src={professionalExperienceIcon} className={styles.resume__edit_card_icon}/>

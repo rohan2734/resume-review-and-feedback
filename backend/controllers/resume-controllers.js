@@ -1,6 +1,7 @@
 //models
 const Resume = require("../models/resume");
 const User = require("../models/user");
+const ProfessionalExperience = require("../models/professionalExperience");
 
 //3rd party modules
 const jwt = require("jsonwebtoken");
@@ -239,7 +240,7 @@ const editResumeProfileDescription = async (req, res) => {
   var existingResume;
 
   try {
-    existingResume = await Resume.find({ _id: resumeId });
+    existingResume = await Resume.findOne({ _id: resumeId });
   } catch (err) {
     console.log(err);
   }
@@ -270,8 +271,69 @@ const editResumeProfileDescription = async (req, res) => {
   });
 };
 
+const editResumeProfessionalExperience = async (req, res) => {
+  var {
+    jobTitle,
+    employer,
+    startDate,
+    endDate,
+    location,
+    description,
+    resumeId,
+  } = req.body;
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId });
+  } catch (err) {
+    console.log(err);
+  }
+
+  var newProfessionalExperience = new ProfessionalExperience({
+    jobTitle,
+    employer,
+    startDate,
+    endDate,
+    location,
+    description,
+  });
+
+  try {
+    newProfessionalExperience = await newProfessionalExperience.save();
+  } catch (err) {
+    console.log(err);
+  }
+  // console.log({ existingResume });
+  existingResume.professionalExperiences = [
+    ...existingResume.professionalExperiences,
+    newProfessionalExperience,
+  ];
+
+  var updatedResume;
+
+  try {
+    updatedResume = await Resume.findByIdAndUpdate(
+      { _id: resumeId },
+      existingResume,
+      { new: true }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+
+  return res.json({
+    status: 200,
+    message: "Added professoinal experience",
+    updatedResume,
+  });
+
+  // return res.json({ message: "" });
+};
+
 exports.createResume = createResume;
 exports.getResumes = getResumes;
 exports.getResumeById = getResumeById;
 exports.editResumeNameDetails = editResumeNameDetails;
 exports.editResumeProfileDescription = editResumeProfileDescription;
+exports.editResumeProfessionalExperience = editResumeProfessionalExperience;

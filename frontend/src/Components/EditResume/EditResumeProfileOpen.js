@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { BASE_URL } from "../Keys/Keys";
+import { BASE_URL } from "../../Keys/Keys";
 
 import styles from "./EditResumeProfileOpen.module.css";
 

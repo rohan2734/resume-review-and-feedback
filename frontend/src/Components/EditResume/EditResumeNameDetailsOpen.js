@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styles from "./EditResumeNameDetailsOpen.module.css";
 
-import defaultProfilePic from "../images/profile_pic.png";
-import editPencilIconBlack from "../icons/edit_pencil_icon__black.png";
+import defaultProfilePic from "../../images/profile_pic.png";
+import editPencilIconBlack from "../../icons/edit_pencil_icon__black.png";
 import axios from "axios";
-import { BASE_URL } from "../Keys/Keys";
+import { BASE_URL } from "../../Keys/Keys";
 import { useParams } from "react-router-dom";
 
-const EditResumeNameOpen = ({
+const EditResumeNameDetailsOpen = ({
   resume,
   setParentsEditStatus,
   setParentsResumeDetails,
@@ -329,4 +329,4 @@ const EditResumeNameOpen = ({
   );
 };
 
-export default EditResumeNameOpen;
+export default EditResumeNameDetailsOpen;
