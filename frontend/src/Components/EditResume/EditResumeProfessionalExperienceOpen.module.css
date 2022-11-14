@@ -1,0 +1,51 @@
+.pe__container {
+  background: white;
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+.pe__title {
+  margin: 0 0 10px 0;
+  font-weight: 1000;
+  font-size: 1.1rem;
+}
+.button_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add_pe_button {
+  border: 0;
+  text-align: center;
+  color: white;
+  padding: 10px 40px;
+  background-color: #5bb318;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+.add_pe_button__add_icon {
+  margin: 0 10px;
+}
+
+.buttons {
+  text-align: right;
+  margin: 10px 0;
+}
+.buttons_cancel {
+  border: 0;
+  background-color: transparent;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.buttons_save {
+  border: 0;
+  padding: 10px 40px;
+  border-radius: 5px;
+  color: white;
+  background-color: #5bb318;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}

@@ -228,10 +228,7 @@ const editResumeNameDetails = async (req, res) => {
     message: "updated the name details of resume succesfully",
     updatedResume,
   });
-  // return res.json({fields,files})
-  // return res.json({profilePicURL})
-  // return res.json({message:"hi"})
-  // return res.json({profilePic,profilePicURL})
+
 };
 
 const editResumeProfileDescription = async (req, res) => {
