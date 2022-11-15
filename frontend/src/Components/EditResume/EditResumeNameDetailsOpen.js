@@ -125,16 +125,10 @@ const EditResumeNameDetailsOpen = ({
           <div className={styles.name_details_container}>
             <div className={styles.inputs_with_edit_image}>
               <div className={styles.inputs}>
-                {/* <form onSubmit={}>
-
-              </form> */}
-
                 <div className={styles.input_container}>
                   <label className={styles.input_label}>Full Name</label>
                   <input
                     className={styles.input_item}
-                    // value={"Full Name"}
-                    // value={resume.fullName}
                     value={resumeNameDetails.fullName}
                     name="fullName"
                     type="text"
@@ -145,8 +139,6 @@ const EditResumeNameDetailsOpen = ({
                   <label className={styles.input_label}>Address</label>
                   <input
                     className={styles.input_item}
-                    // value={"Address"}
-                    // value={resume.address}
                     value={resumeNameDetails.address}
                     name="address"
                     type="text"
@@ -157,8 +149,6 @@ const EditResumeNameDetailsOpen = ({
                   <label className={styles.input_label}>Gender</label>
                   <input
                     className={styles.input_item}
-                    // value={"Gender"}
-                    // value={resume.gender}
                     value={resumeNameDetails.gender}
                     name="gender"
                     type="text"
@@ -168,24 +158,14 @@ const EditResumeNameDetailsOpen = ({
               </div>
               <div className={styles.edit_image_container}>
                 <img
-                  // src={defaultProfilePic}
                   src={
-                    // resume.profilePicURL
-                    //   ? resume.profilePicURL
-                    //   : defaultProfilePic
                     resumeNameDetails.profilePicURL
                       ? resumeNameDetails.profilePicURL
                       : resumeNameDetails.profilePic
                   }
                   className={styles.namedetails_image}
                 />
-                {/* <label for="profilePic">
-                  <img
-                    src={editPencilIconBlack}
-                    className={styles.edit_image_icon}
-                  />
-                </label> */}
-                {/* <input type="file" id="firstimage" style="display:none;" /> */}
+
                 <input
                   type="file"
                   id="profilePic"
@@ -198,8 +178,6 @@ const EditResumeNameDetailsOpen = ({
                   <label className={styles.input_label}>Job Title </label>
                   <input
                     className={styles.input_item}
-                    // value={"Job Title"}
-                    // value={resume.jobTitle}
                     value={resumeNameDetails.jobTitle}
                     name="jobTitle"
                     type="text"
@@ -213,8 +191,6 @@ const EditResumeNameDetailsOpen = ({
                 <label className={styles.input_label}>Email</label>
                 <input
                   className={styles.input_item}
-                  // value={"email@gmail.com"}
-                  // value={resume.emailID}
                   value={resumeNameDetails.emailID}
                   type="text"
                   name="emailID"
@@ -225,8 +201,6 @@ const EditResumeNameDetailsOpen = ({
                 <label className={styles.input_label}>Phone Number</label>
                 <input
                   className={styles.input_item}
-                  // value={"9876543210"}
-                  // value={resume.phoneNumber}
                   value={resumeNameDetails.phoneNumber}
                   type="text"
                   name="phoneNumber"
@@ -238,8 +212,6 @@ const EditResumeNameDetailsOpen = ({
               <label className={styles.input_label}>location</label>
               <input
                 className={styles.input_item}
-                // value={"9876543210"}
-                // value={resume.location}
                 value={resumeNameDetails.location}
                 type="text"
                 name="location"
@@ -256,8 +228,6 @@ const EditResumeNameDetailsOpen = ({
                   <label className={styles.input_label}>linkedin</label>
                   <input
                     className={styles.input_item}
-                    // value={"https://linkedin.com/in/adrewkim"}
-                    // value={resume.linkedinURL}
                     value={resumeNameDetails.linkedinURL}
                     name="linkedinURL"
                     type="text"
@@ -268,8 +238,6 @@ const EditResumeNameDetailsOpen = ({
                   <label className={styles.input_label}>Medium</label>
                   <input
                     className={styles.input_item}
-                    // value={"https://medium.com/@andrewkim"}
-                    // value={resume.mediumURL}
                     value={resumeNameDetails.mediumURL}
                     name="mediumURL"
                     type="text"
@@ -282,8 +250,6 @@ const EditResumeNameDetailsOpen = ({
                   <label className={styles.input_label}>Github</label>
                   <input
                     className={styles.input_item}
-                    // value={"https://github.com/andrewkim"}
-                    // value={resume.githubURL}
                     value={resumeNameDetails.githubURL}
                     name="githubURL"
                     type="text"
@@ -294,8 +260,6 @@ const EditResumeNameDetailsOpen = ({
                   <label className={styles.input_label}>website</label>
                   <input
                     className={styles.input_item}
-                    // value={"https://andrewkim.uk"}
-                    // value={resume.websiteURL}
                     value={resumeNameDetails.websiteURL}
                     name="websiteURL"
                     type="text"
@@ -323,7 +287,6 @@ const EditResumeNameDetailsOpen = ({
             </button>
           </div>
         </form>
-        {/* </form> */}
       </div>
     </>
   );

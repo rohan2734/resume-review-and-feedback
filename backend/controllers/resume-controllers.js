@@ -78,7 +78,9 @@ const getResumeById = async (req, res) => {
 
   var resume;
   try {
-    resume = await Resume.findOne({ _id: resumeId });
+    resume = await Resume.findOne({ _id: resumeId }).populate(
+      "professionalExperiences"
+    );
   } catch (err) {
     console.log(err);
   }
@@ -228,7 +230,6 @@ const editResumeNameDetails = async (req, res) => {
     message: "updated the name details of resume succesfully",
     updatedResume,
   });
-
 };
 
 const editResumeProfileDescription = async (req, res) => {
