@@ -131,15 +131,21 @@ const EditResume = () => {
                     </div> */}
 
           {/* edit professional experience */}
-          <ResumeEditCardClosed
-            title="Professional Experience"
-            cardIcon={professionalExperienceIcon}
-          />
-          <EditResumeProfessionalExperienceOpen
-            resume={resumeDetails}
-            setParentsEditStatus={setEditStatus}
-            setParentsResumeDetails={setResumeDetails}
-          />
+          {!editStatus.professionalExperiences ? (
+            <ResumeEditCardClosed
+              title="Professional Experience"
+              cardIcon={professionalExperienceIcon}
+              setParentsEditStatus={setEditStatus}
+              editStatusKey="professionalExperiences"
+            />
+          ) : (
+            <EditResumeProfessionalExperienceOpen
+              resume={resumeDetails}
+              professionalExperiences={resumeDetails.professionalExperiences}
+              setParentsEditStatus={setEditStatus}
+              setParentsResumeDetails={setResumeDetails}
+            />
+          )}
           {/* <div className={styles.resume__edit_card}>
                         <img src={professionalExperienceIcon} className={styles.resume__edit_card_icon}/>
                         <h3 className={styles.resume__edit_card_title}>Professional Experience</h3>

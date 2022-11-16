@@ -12,6 +12,7 @@ const ResumeEditCardClosed = ({
   editStatusKey,
 }) => {
   // editStatusKey="profileDescription"
+  console.log({ editStatusKey });
   return (
     <div className={styles.resume__edit_card}>
       <img src={cardIcon} className={styles.resume__edit_card_icon} />

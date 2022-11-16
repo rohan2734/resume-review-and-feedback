@@ -1,4 +1,4 @@
-.pe_card {
+/* .pe_card {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -7,13 +7,15 @@
   border-radius: 5px;
   cursor: pointer;
   margin: 10px 0;
-}
+} */
+
 .pe__container {
   background: white;
   padding: 1rem;
   border-radius: 5px;
   margin: 10px 0;
 }
+/*
 .pe__title {
   margin: 0 0 10px 0;
   font-weight: 1200;
@@ -63,7 +65,7 @@
 }
 .textarea {
   width: 97% !important;
-}
+} */
 .button_container {
   display: flex;
   justify-content: center;

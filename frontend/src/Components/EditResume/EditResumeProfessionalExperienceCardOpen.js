@@ -1,6 +1,15 @@
 import react from "react";
 
-const EditResumeProfessionalExperienceCardOpen = () => {
+import styles from "./EditResumeProfessionalExperienceCardOpen.module.css";
+
+const EditResumeProfessionalExperienceCardOpen = ({
+  selectedProfessionalExperience,
+  setEditProfessionalExperienceCardStatus,
+}) => {
+  // const [professionalExperiences, setProfessionalExperiences] = useState(
+  //   professionalExperiences || []
+  // );
+  console.log({ selectedProfessionalExperience });
   return (
     <div className={styles.pe_edit_container}>
       <form>
