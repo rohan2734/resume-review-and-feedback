@@ -23,21 +23,23 @@ const EditResumeProfessionalExperienceOpen = ({
     editProfessionalExperienceCardStatus,
     setEditProfessionalExperienceCardStatus,
   ] = useState(false);
-  console.log({ professionalExperiences });
+  // console.log({ professionalExperiences });
   console.log({ selectedProfessionalExperience });
   // console.log({ resume });
   return (
     <>
       <div className={styles.pe__container}>
         <h3 className={styles.pe__title}>Edit Professional Experience</h3>
-
+        {/* edit professional experience card open */}
         {editProfessionalExperienceCardStatus && (
           <EditResumeProfessionalExperienceCardOpen
             selectedProfessionalExperience={selectedProfessionalExperience}
-            setEditProfessionalExperienceCardStatus
+            setEditProfessionalExperienceCardStatusParent={
+              setEditProfessionalExperienceCardStatus
+            }
           />
         )}
-
+        {/* professional experience card list */}
         {!editProfessionalExperienceCardStatus && (
           <EditProfessionalExperienceCard
             professionalExperiences={professionalExperiences}

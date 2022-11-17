@@ -1,15 +1,24 @@
-import react from "react";
+import react, { useState } from "react";
 
 import styles from "./EditResumeProfessionalExperienceCardOpen.module.css";
 
 const EditResumeProfessionalExperienceCardOpen = ({
   selectedProfessionalExperience,
-  setEditProfessionalExperienceCardStatus,
+  setEditProfessionalExperienceCardStatusParent,
 }) => {
-  // const [professionalExperiences, setProfessionalExperiences] = useState(
-  //   professionalExperiences || []
-  // );
   console.log({ selectedProfessionalExperience });
+  const [professionalExperience, setProfessionalExperience] = useState(
+    selectedProfessionalExperience
+  );
+
+  const setInputHandler = (e) => {
+    setProfessionalExperience({
+      ...professionalExperience,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  console.log({ professionalExperience });
   return (
     <div className={styles.pe_edit_container}>
       <form>
@@ -19,11 +28,10 @@ const EditResumeProfessionalExperienceCardOpen = ({
             <input
               className={styles.input_item}
               // value={"Full Name"}
-
-              // value={resumeNameDetails.fullName}
-              // name="fullName"
-              // type="text"
-              // onChange={setInputHandler}
+              value={professionalExperience.jobTitle}
+              name="jobTitle"
+              type="text"
+              onChange={setInputHandler}
             />
           </div>
           <div className={styles.input_date_container}>
@@ -31,24 +39,20 @@ const EditResumeProfessionalExperienceCardOpen = ({
               <label className={styles.input_label}>Start Date</label>
               <input
                 className={styles.input_item}
-                // value={"Full Name"}
-
-                // value={resumeNameDetails.fullName}
-                // name="fullName"
-                // type="text"
-                // onChange={setInputHandler}
+                value={professionalExperience.startDate}
+                name="startDate"
+                type="date"
+                onChange={setInputHandler}
               />
             </div>
             <div className={styles.input_container}>
               <label className={styles.input_label}>End Date</label>
               <input
                 className={styles.input_item}
-                // value={"Full Name"}
-
-                // value={resumeNameDetails.fullName}
-                // name="fullName"
-                // type="text"
-                // onChange={setInputHandler}
+                value={professionalExperience.endDate}
+                name="endDate"
+                type="date"
+                onChange={setInputHandler}
               />
             </div>
           </div>
@@ -59,24 +63,20 @@ const EditResumeProfessionalExperienceCardOpen = ({
             <label className={styles.input_label}>Employer</label>
             <input
               className={styles.input_item}
-              // value={"Full Name"}
-
-              // value={resumeNameDetails.fullName}
-              // name="fullName"
-              // type="text"
-              // onChange={setInputHandler}
+              value={professionalExperience.employer}
+              name="employer"
+              type="text"
+              onChange={setInputHandler}
             />
           </div>
           <div className={styles.input_container}>
             <label className={styles.input_label}>Location </label>
             <input
               className={styles.input_item}
-              // value={"Full Name"}
-
-              // value={resumeNameDetails.fullName}
-              // name="fullName"
-              // type="text"
-              // onChange={setInputHandler}
+              value={professionalExperience.location}
+              name="location"
+              type="text"
+              onChange={setInputHandler}
             />
           </div>
         </div>
@@ -86,12 +86,27 @@ const EditResumeProfessionalExperienceCardOpen = ({
 
           <textarea
             className={styles.input_item}
-            // value={profileDescription}
-            // name="profileDescription"
-            rows="4"
-            // onChange={(e) => setProfileDescription(e.target.value)}
-            //   cols="500"
+            value={professionalExperience.location}
+            name="description"
+            type="text"
+            onChange={setInputHandler}
           />
+        </div>
+
+        <div className={styles.buttons}>
+          <button
+            className={styles.buttons_cancel}
+            onClick={() => {
+              setEditProfessionalExperienceCardStatusParent(
+                (prevState) => !prevState
+              );
+            }}
+          >
+            cancel
+          </button>
+          <button className={styles.buttons_save} type="submit">
+            save
+          </button>
         </div>
       </form>
     </div>

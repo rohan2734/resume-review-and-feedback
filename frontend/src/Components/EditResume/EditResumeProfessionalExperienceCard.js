@@ -10,9 +10,10 @@ const EditProfessionalExperienceCard = ({
   setSelectedProfessionalExperienceParent,
   setEditProfessionalExperienceCardStatusParent,
 }) => {
-  console.log({ professionalExperiences });
+  // console.log({ professionalExperiences });
 
   const onClickHandler = (professionalExperience) => {
+    console.log({ professionalExperience });
     setSelectedProfessionalExperienceParent(professionalExperience);
     setEditProfessionalExperienceCardStatusParent((prev) => !prev);
   };
@@ -26,9 +27,7 @@ const EditProfessionalExperienceCard = ({
           //   setSelectedProfessionalExperienceParent(professionalExperience)
 
           // }
-          onClick={(professionalExperience) =>
-            onClickHandler(professionalExperience)
-          }
+          onClick={() => onClickHandler(professionalExperience)}
         >
           <div className={styles.title_and_details_container}>
             <h3 className={styles.job_and_company}>
