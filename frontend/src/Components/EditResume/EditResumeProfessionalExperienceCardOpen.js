@@ -53,16 +53,6 @@ const EditResumeProfessionalExperienceCardOpen = ({
           console.log({ resp: res.data });
 
           if (res.data.status == 200) {
-            // setParentsEditStatus((prevState) => ({
-            //   ...prevState,
-            //   profileDescription: !prevState.profileDescription,
-            // }));
-            //   setProfileDescription(res.data.updatedResume.profileDescription);
-            // setParentsResumeDetails((prevState) => ({
-            //   ...prevState,
-            //   profileDescription: res.data.updatedResume.profileDescription,
-            // }));
-            //break
             setEditProfessionalExperienceCardStatusParent(
               (prevState) => !prevState
             );
