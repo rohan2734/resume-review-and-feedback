@@ -13,10 +13,13 @@ const EditResumeProfessionalExperienceOpen = ({
   resume,
   professionalExperiences,
   setParentsEditStatus,
+  setParentsResumeDetails,
 }) => {
   // const [professionalExperiences, setProfessionalExperiences] = useState(
   //   resume.professionalExperiences
   // );
+  const [professionalExperiencesCurrent, setProfessionalExperiencesCurrent] =
+    useState(professionalExperiences);
   const [selectedProfessionalExperience, setSelectedProfessionalExperience] =
     useState(null);
   const [
@@ -41,12 +44,16 @@ const EditResumeProfessionalExperienceOpen = ({
             setEditProfessionalExperienceCardStatusParent={
               setEditProfessionalExperienceCardStatus
             }
+            setProfessionalExperiencesCurrentParent={
+              setProfessionalExperiencesCurrent
+            }
+            setParentsResumeDetails={setParentsResumeDetails}
           />
         )}
         {/* professional experience card list */}
         {!editProfessionalExperienceCardStatus && (
           <EditProfessionalExperienceCard
-            professionalExperiences={professionalExperiences}
+            professionalExperiencesCurrent={professionalExperiencesCurrent}
             setSelectedProfessionalExperienceParent={
               setSelectedProfessionalExperience
             }

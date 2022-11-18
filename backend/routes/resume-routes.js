@@ -39,8 +39,8 @@ router.patch(
 );
 
 router.patch(
-  "/edit-resume-professional-experience",
+  "/edit-resume-add-professional-experience",
   middleWares.authenticateToken,
-  resumeControllers.editResumeProfessionalExperience
+  resumeControllers.editResumeAddProfessionalExperience
 );
 module.exports = router;

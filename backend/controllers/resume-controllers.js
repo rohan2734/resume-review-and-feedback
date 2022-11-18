@@ -269,7 +269,7 @@ const editResumeProfileDescription = async (req, res) => {
   });
 };
 
-const editResumeProfessionalExperience = async (req, res) => {
+const editResumeAddProfessionalExperience = async (req, res) => {
   var {
     jobTitle,
     employer,
@@ -315,7 +315,7 @@ const editResumeProfessionalExperience = async (req, res) => {
       { _id: resumeId },
       existingResume,
       { new: true }
-    );
+    ).populate("professionalExperiences");
   } catch (err) {
     console.log(err);
   }
@@ -323,15 +323,20 @@ const editResumeProfessionalExperience = async (req, res) => {
   return res.json({
     status: 200,
     message: "Added professoinal experience",
-    updatedResume,
+    updatedResume: updatedResume,
   });
 
   // return res.json({ message: "" });
 };
+
+const editResumeEditProfessionalExperience = (req, res) => {};
 
 exports.createResume = createResume;
 exports.getResumes = getResumes;
 exports.getResumeById = getResumeById;
 exports.editResumeNameDetails = editResumeNameDetails;
 exports.editResumeProfileDescription = editResumeProfileDescription;
-exports.editResumeProfessionalExperience = editResumeProfessionalExperience;
+exports.editResumeAddProfessionalExperience =
+  editResumeAddProfessionalExperience;
+exports.editResumeEditProfessionalExperience =
+  editResumeEditProfessionalExperience;

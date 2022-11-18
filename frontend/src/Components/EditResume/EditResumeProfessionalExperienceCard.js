@@ -6,7 +6,7 @@ import delete_icon_black from "../../icons/delete_icon_black.png";
 import styles from "./EditResumeProfessionalExperienceCard.module.css";
 
 const EditProfessionalExperienceCard = ({
-  professionalExperiences,
+  professionalExperiencesCurrent,
   setSelectedProfessionalExperienceParent,
   setEditProfessionalExperienceCardStatusParent,
 }) => {
@@ -19,7 +19,7 @@ const EditProfessionalExperienceCard = ({
   };
   return (
     <div className={styles.pe_list_container}>
-      {professionalExperiences.map((professionalExperience) => (
+      {professionalExperiencesCurrent.map((professionalExperience) => (
         <div
           className={styles.pe_card}
           key={professionalExperience._id}
