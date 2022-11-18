@@ -79,6 +79,7 @@
   background-color: #5bb318;
   font-size: 1rem;
   border-radius: 5px;
+  cursor: pointer;
 }
 .add_pe_button__add_icon {
   margin: 0 10px;

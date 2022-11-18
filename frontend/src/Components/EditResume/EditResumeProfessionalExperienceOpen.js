@@ -18,10 +18,14 @@ const EditResumeProfessionalExperienceOpen = ({
   //   resume.professionalExperiences
   // );
   const [selectedProfessionalExperience, setSelectedProfessionalExperience] =
-    useState({});
+    useState(null);
   const [
     editProfessionalExperienceCardStatus,
     setEditProfessionalExperienceCardStatus,
+  ] = useState(false);
+  const [
+    addProfessionalExperienceCardStatus,
+    setAddProfessionalExperienceCardStatus,
   ] = useState(false);
   // console.log({ professionalExperiences });
   console.log({ selectedProfessionalExperience });
@@ -51,14 +55,28 @@ const EditResumeProfessionalExperienceOpen = ({
             }
           />
         )}
-        <div className={styles.button_container}>
-          <button className={styles.add_pe_button}>
-            <span>
-              <img src={add_icon} className={styles.add_pe_button__add_icon} />
-            </span>
-            Professional Experience
-          </button>
-        </div>
+
+        {!editProfessionalExperienceCardStatus && (
+          <div className={styles.button_container}>
+            <button
+              className={styles.add_pe_button}
+              onClick={() => {
+                setEditProfessionalExperienceCardStatus(
+                  (prevState) => !prevState
+                );
+                setSelectedProfessionalExperience(null);
+              }}
+            >
+              <span>
+                <img
+                  src={add_icon}
+                  className={styles.add_pe_button__add_icon}
+                />
+              </span>
+              Professional Experience
+            </button>
+          </div>
+        )}
 
         <div className={styles.buttons}>
           <button

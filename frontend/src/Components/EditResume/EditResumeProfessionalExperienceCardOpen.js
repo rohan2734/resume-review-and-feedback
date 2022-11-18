@@ -28,7 +28,7 @@ const EditResumeProfessionalExperienceCardOpen = ({
             <input
               className={styles.input_item}
               // value={"Full Name"}
-              value={professionalExperience.jobTitle}
+              value={professionalExperience?.jobTitle}
               name="jobTitle"
               type="text"
               onChange={setInputHandler}
@@ -39,7 +39,7 @@ const EditResumeProfessionalExperienceCardOpen = ({
               <label className={styles.input_label}>Start Date</label>
               <input
                 className={styles.input_item}
-                value={professionalExperience.startDate}
+                value={professionalExperience?.startDate}
                 name="startDate"
                 type="date"
                 onChange={setInputHandler}
@@ -49,7 +49,7 @@ const EditResumeProfessionalExperienceCardOpen = ({
               <label className={styles.input_label}>End Date</label>
               <input
                 className={styles.input_item}
-                value={professionalExperience.endDate}
+                value={professionalExperience?.endDate}
                 name="endDate"
                 type="date"
                 onChange={setInputHandler}
@@ -63,7 +63,7 @@ const EditResumeProfessionalExperienceCardOpen = ({
             <label className={styles.input_label}>Employer</label>
             <input
               className={styles.input_item}
-              value={professionalExperience.employer}
+              value={professionalExperience?.employer}
               name="employer"
               type="text"
               onChange={setInputHandler}
@@ -73,7 +73,7 @@ const EditResumeProfessionalExperienceCardOpen = ({
             <label className={styles.input_label}>Location </label>
             <input
               className={styles.input_item}
-              value={professionalExperience.location}
+              value={professionalExperience?.location}
               name="location"
               type="text"
               onChange={setInputHandler}
@@ -86,7 +86,7 @@ const EditResumeProfessionalExperienceCardOpen = ({
 
           <textarea
             className={styles.input_item}
-            value={professionalExperience.location}
+            value={professionalExperience?.description}
             name="description"
             type="text"
             onChange={setInputHandler}
