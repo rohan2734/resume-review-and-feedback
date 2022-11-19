@@ -43,4 +43,17 @@ router.patch(
   middleWares.authenticateToken,
   resumeControllers.editResumeAddProfessionalExperience
 );
+
+router.patch(
+  "/edit-resume-edit-professional-experience",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeEditProfessionalExperience
+);
+
+router.patch(
+  "/edit-resume-delete-professional-experience",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeDeleteProfessionalExperience
+);
+
 module.exports = router;

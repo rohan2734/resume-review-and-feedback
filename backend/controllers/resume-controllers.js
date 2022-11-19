@@ -329,7 +329,122 @@ const editResumeAddProfessionalExperience = async (req, res) => {
   // return res.json({ message: "" });
 };
 
-const editResumeEditProfessionalExperience = (req, res) => {};
+const editResumeEditProfessionalExperience = async (req, res) => {
+  var {
+    jobTitle,
+    employer,
+    startDate,
+    endDate,
+    location,
+    description,
+    resumeId,
+    professionalExperienceId,
+  } = req.body;
+
+  var existingProfessionalExperience;
+
+  try {
+    existingProfessionalExperience = await ProfessionalExperience.findOne({
+      _id: professionalExperienceId,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  existingProfessionalExperience = {
+    ...existingProfessionalExperience._doc,
+    jobTitle,
+    employer,
+    startDate,
+    endDate,
+    location,
+    description,
+  };
+
+  // console.log({ existingProfessionalExperience });
+
+  // var newProfessionalExperience = {
+  //   jobTitle,
+  //   employer,
+  //   description,
+  //   startDate,
+  //   endDate,
+  //   location,
+  //   _id: professionalExperienceId,
+  // };
+  // console.log({ newProfessionalExperience });
+
+  try {
+    updatedProfessionalExperience =
+      await ProfessionalExperience.findByIdAndUpdate(
+        { _id: professionalExperienceId },
+        existingProfessionalExperience,
+        { new: true }
+      );
+  } catch (err) {
+    console.log(err);
+  }
+
+  console.log({ updatedProfessionalExperience });
+  // return res.json({ message: "trail" });
+  return res.json({
+    message: "updated the professional experience",
+    status: 200,
+    updatedProfessionalExperience,
+  });
+};
+
+const editResumeDeleteProfessionalExperience = async (req, res) => {
+  var { professionalExperienceId, resumeId } = req.body;
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId });
+  } catch (err) {
+    console.log(err);
+  }
+  console.log({ existingResume });
+
+  var newProfessionalExperienceArray =
+    existingResume.professionalExperiences.filter(
+      (professionalExperience) =>
+        professionalExperience._id != professionalExperienceId
+    );
+
+  // console.log({ newProfessionalExperienceArray });
+  existingResume = {
+    ...existingResume._doc,
+    professionalExperiences: newProfessionalExperienceArray,
+  };
+
+  // console.log({ existingResume });
+
+  var updatedProfessionalExperience;
+  try {
+    await ProfessionalExperience.deleteOne({ _id: professionalExperienceId });
+  } catch (err) {
+    console.log(err);
+  }
+
+  var updatedResume;
+
+  try {
+    updatedResume = await Resume.findByIdAndUpdate(
+      { _id: resumeId },
+      existingResume,
+      { new: true }
+    ).populate("professionalExperiences");
+  } catch (err) {
+    console.log(err);
+  }
+  // console.log({ updatedResume });
+  return res.json({
+    updatedResume,
+    message: "deleted the professional experience",
+    status: 200,
+  });
+};
 
 exports.createResume = createResume;
 exports.getResumes = getResumes;
@@ -340,3 +455,5 @@ exports.editResumeAddProfessionalExperience =
   editResumeAddProfessionalExperience;
 exports.editResumeEditProfessionalExperience =
   editResumeEditProfessionalExperience;
+exports.editResumeDeleteProfessionalExperience =
+  editResumeDeleteProfessionalExperience;
