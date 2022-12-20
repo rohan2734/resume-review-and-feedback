@@ -13,7 +13,6 @@ const EditResumeProfessionalExperienceCardOpen = ({
   setProfessionalExperiencesCurrentParent,
   setParentsResumeDetails,
 }) => {
-  console.log({ selectedProfessionalExperience });
   const [professionalExperience, setProfessionalExperience] = useState(
     selectedProfessionalExperience
   );
@@ -27,12 +26,6 @@ const EditResumeProfessionalExperienceCardOpen = ({
 
   var { resumeId } = useParams();
 
-  // var d = {
-  //   ...professionalExperience,
-  //   resumeId,
-  // };
-  // console.log({ d });
-
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
@@ -41,7 +34,7 @@ const EditResumeProfessionalExperienceCardOpen = ({
     var headers = {
       authorization: `Bearer ${token}`,
     };
-    // console.log({ profileDescription });
+
     if (selectedProfessionalExperience == null) {
       axios({
         method: "PATCH",
@@ -73,7 +66,6 @@ const EditResumeProfessionalExperienceCardOpen = ({
     // axios.patch()
   };
 
-  // console.log({ professionalExperience });
   return (
     <div className={styles.pe_edit_container}>
       <form onSubmit={formSubmitHandler}>

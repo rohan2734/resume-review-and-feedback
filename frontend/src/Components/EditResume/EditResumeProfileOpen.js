@@ -59,15 +59,6 @@ const EditResumeProfileOpen = ({
       <form onSubmit={formSubmitHandler}>
         <div className={styles.input_container}>
           <label className={styles.input_label}>Profile Description</label>
-          {/* <input
-                            className={styles.input_item}
-                            // value={"Full Name"}
-                            // value={resume.fullName}
-                            value={resumeNameDetails.fullName}
-                            name="fullName"
-                            type="text"
-                            onChange={setInputHandler}
-                        /> */}
 
           <textarea
             className={styles.input_item}
@@ -75,7 +66,6 @@ const EditResumeProfileOpen = ({
             name="profileDescription"
             rows="4"
             onChange={(e) => setProfileDescription(e.target.value)}
-            //   cols="500"
           />
         </div>
         <div className={styles.buttons}>

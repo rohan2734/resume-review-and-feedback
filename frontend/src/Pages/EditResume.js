@@ -12,6 +12,8 @@ import EditResumeNameDetailsClosed from "../Components/EditResume/EditResumeName
 import EditResumeNameDetailsOpen from "../Components/EditResume/EditResumeNameDetailsOpen";
 import EditResumeProfileOpen from "../Components/EditResume/EditResumeProfileOpen";
 import ResumeEditCardClosed from "../Components/EditResume/ResumeEditCardClosed";
+import EditResumeProfessionalExperienceOpen from "../Components/EditResume/EditResumeProfessionalExperienceOpen";
+import EditResumeSkillsOpen from "../Components/EditResume/EditResumeSkillsOpen";
 
 // icons
 import profileIcon from "../icons/profile_icon.png";
@@ -23,7 +25,6 @@ import awardsIcon from "../icons/awards_icon.png";
 import interestsIcon from "../icons/interests_icon.png";
 import certificatesIcon from "../icons/certificates_icon.png";
 import languagesIcon from "../icons/languages_icon.png";
-import EditResumeProfessionalExperienceOpen from "../Components/EditResume/EditResumeProfessionalExperienceOpen";
 
 const EditResume = () => {
   const { resumeId } = useParams();
@@ -124,12 +125,6 @@ const EditResume = () => {
             />
           )}
 
-          {/* <div className={styles.resume__edit_card}>
-                        <img src={profileIcon} className={styles.resume__edit_card_icon}/>
-                        <h3 className={styles.resume__edit_card_title}>Profile</h3>
-                        <img  className={styles.resume__edit_card_dropdown} src={editResumeDropdown} />
-                    </div> */}
-
           {/* edit professional experience */}
           {!editStatus.professionalExperiences ? (
             <ResumeEditCardClosed
@@ -146,14 +141,36 @@ const EditResume = () => {
               setParentsResumeDetails={setResumeDetails}
             />
           )}
-          {/* <div className={styles.resume__edit_card}>
-                        <img src={professionalExperienceIcon} className={styles.resume__edit_card_icon}/>
-                        <h3 className={styles.resume__edit_card_title}>Professional Experience</h3>
-                        <img  className={styles.resume__edit_card_dropdown} src={editResumeDropdown} />
-                    </div> */}
 
           {/* edit skills */}
-          <ResumeEditCardClosed title="Skills" cardIcon={skillsIcon} />
+          {/* {!editStatus.skills ? (
+            <ResumeEditCardClosed
+              title="Skills"
+              cardIcon={skillsIcon}
+              setParentsEditStatus={setEditStatus}
+              editStatusKey="skills"
+            />
+          ) : (
+            <EditResumeSkillsOpen
+              resume={resumeDetails}
+              skills={resumeDetails.skills}
+              setParentsEditStatus={setEditStatus}
+              setParentsResumeDetails={setResumeDetails}
+            />
+          )} */}
+          <ResumeEditCardClosed
+            title="Skills"
+            cardIcon={skillsIcon}
+            setParentsEditStatus={setEditStatus}
+            editStatusKey="skills"
+          />
+          <EditResumeSkillsOpen />
+          {/* <EditResumeSkillsOpen
+            resume={resumeDetails}
+            skills={resumeDetails.skills}
+            setParentsEditStatus={setEditStatus}
+            setParentsResumeDetails={setResumeDetails}
+          /> */}
           {/* <div className={styles.resume__edit_card}>
                         <img src={skillsIcon} className={styles.resume__edit_card_icon}/>
                         <h3 className={styles.resume__edit_card_title}>Skils</h3>

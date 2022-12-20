@@ -38,6 +38,7 @@ router.patch(
   resumeControllers.editResumeProfileDescription
 );
 
+//professional experience
 router.patch(
   "/edit-resume-add-professional-experience",
   middleWares.authenticateToken,
@@ -55,5 +56,14 @@ router.patch(
   middleWares.authenticateToken,
   resumeControllers.editResumeDeleteProfessionalExperience
 );
+//skills
+
+router.patch(
+  "/edit-resume-add-skills",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeAddSkills
+);
+
+// edit-resume-add-skills
 
 module.exports = router;

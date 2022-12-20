@@ -4,8 +4,6 @@ import EditResumeProfessionalExperienceCardOpen from "./EditResumeProfessionalEx
 import EditProfessionalExperienceCard from "./EditResumeProfessionalExperienceCard";
 
 import add_icon from "../../icons/add_icon.png";
-// import edit_pencil_icon__black from "../../icons/edit_pencil_icon__black.png";
-// import delete_icon_black from "../../icons/delete_icon_black.png";
 
 import styles from "./EditResumeProfessionalExperienceOpen.module.css";
 
@@ -15,9 +13,6 @@ const EditResumeProfessionalExperienceOpen = ({
   setParentsEditStatus,
   setParentsResumeDetails,
 }) => {
-  // const [professionalExperiences, setProfessionalExperiences] = useState(
-  //   resume.professionalExperiences
-  // );
   const [professionalExperiencesCurrent, setProfessionalExperiencesCurrent] =
     useState(professionalExperiences);
   const [selectedProfessionalExperience, setSelectedProfessionalExperience] =
@@ -30,9 +25,7 @@ const EditResumeProfessionalExperienceOpen = ({
     addProfessionalExperienceCardStatus,
     setAddProfessionalExperienceCardStatus,
   ] = useState(false);
-  // console.log({ professionalExperiences });
-  console.log({ selectedProfessionalExperience });
-  // console.log({ resume });
+
   return (
     <>
       <div className={styles.pe__container}>
@@ -97,9 +90,6 @@ const EditResumeProfessionalExperienceOpen = ({
           >
             close
           </button>
-          {/* <button className={styles.buttons_save} type="submit">
-            save
-          </button> */}
         </div>
       </div>
     </>

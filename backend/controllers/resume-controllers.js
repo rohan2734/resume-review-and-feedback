@@ -2,6 +2,7 @@
 const Resume = require("../models/resume");
 const User = require("../models/user");
 const ProfessionalExperience = require("../models/professionalExperience");
+const Skill = require("../models/skill");
 
 //3rd party modules
 const jwt = require("jsonwebtoken");
@@ -361,19 +362,6 @@ const editResumeEditProfessionalExperience = async (req, res) => {
     description,
   };
 
-  // console.log({ existingProfessionalExperience });
-
-  // var newProfessionalExperience = {
-  //   jobTitle,
-  //   employer,
-  //   description,
-  //   startDate,
-  //   endDate,
-  //   location,
-  //   _id: professionalExperienceId,
-  // };
-  // console.log({ newProfessionalExperience });
-
   try {
     updatedProfessionalExperience =
       await ProfessionalExperience.findByIdAndUpdate(
@@ -446,14 +434,61 @@ const editResumeDeleteProfessionalExperience = async (req, res) => {
   });
 };
 
+const editResumeAddSkills = async (req, res) => {
+  var { skillName, skillLevel, resumeId } = req.body;
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId });
+  } catch (err) {
+    console.log(err);
+  }
+
+  var newSkill = new Skill({
+    skillName,
+    skillLevel,
+  });
+
+  try {
+    newSkill = await newSkill.save();
+  } catch (err) {
+    console.log(err);
+  }
+
+  existingResume.skills = [...existingResume.skills, newSkill];
+
+  var updatedResume;
+
+  try {
+    updatedResume = await Resume.findByIdAndUpdate(
+      { _id: resumeId },
+      existingResume,
+      { new: true }
+    ).populate("skills");
+  } catch (err) {
+    console.log(err);
+  }
+
+  return res.json({
+    status: 200,
+    message: "Added skills",
+    updatedResume: updatedResume,
+  });
+};
+
 exports.createResume = createResume;
 exports.getResumes = getResumes;
 exports.getResumeById = getResumeById;
 exports.editResumeNameDetails = editResumeNameDetails;
 exports.editResumeProfileDescription = editResumeProfileDescription;
+//professional experience
 exports.editResumeAddProfessionalExperience =
   editResumeAddProfessionalExperience;
 exports.editResumeEditProfessionalExperience =
   editResumeEditProfessionalExperience;
 exports.editResumeDeleteProfessionalExperience =
   editResumeDeleteProfessionalExperience;
+
+//skills
+exports.editResumeAddSkills = editResumeAddSkills;

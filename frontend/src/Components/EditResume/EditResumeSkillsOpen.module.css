@@ -1,0 +1,32 @@
+.s__container {
+  background: white;
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.buttons {
+  text-align: right;
+  margin: 10px 0;
+}
+.button_container {
+  margin: 10px;
+}
+.buttons_cancel {
+  border: 0;
+  background-color: transparent;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.buttons_save {
+  border: 0;
+  padding: 10px 40px;
+  border-radius: 5px;
+  color: white;
+  background-color: #5bb318;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
