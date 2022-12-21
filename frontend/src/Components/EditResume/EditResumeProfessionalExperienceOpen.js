@@ -53,6 +53,10 @@ const EditResumeProfessionalExperienceOpen = ({
             setEditProfessionalExperienceCardStatusParent={
               setEditProfessionalExperienceCardStatus
             }
+            setProfessionalExperiencesCurrentParent={
+              setProfessionalExperiencesCurrent
+            }
+            setParentsResumeDetails={setParentsResumeDetails}
           />
         )}
 

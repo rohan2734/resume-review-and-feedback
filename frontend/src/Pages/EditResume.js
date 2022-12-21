@@ -84,10 +84,13 @@ const EditResume = () => {
           ...resumeDetails,
           ...res.data.resume,
         });
+        // console.log({ resume: res.data.resume });
       })
       .catch((err) => {
         // console.log(err);
       });
+
+    // console.log({ resumeDetails });
   }, []);
 
   return (
@@ -164,7 +167,12 @@ const EditResume = () => {
             setParentsEditStatus={setEditStatus}
             editStatusKey="skills"
           />
-          <EditResumeSkillsOpen />
+          <EditResumeSkillsOpen
+            resume={resumeDetails}
+            skills={resumeDetails.skills}
+            setParentsEditStatus={setEditStatus}
+            setParentsResumeDetails={setResumeDetails}
+          />
           {/* <EditResumeSkillsOpen
             resume={resumeDetails}
             skills={resumeDetails.skills}

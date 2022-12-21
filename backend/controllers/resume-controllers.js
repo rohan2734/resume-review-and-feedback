@@ -79,9 +79,13 @@ const getResumeById = async (req, res) => {
 
   var resume;
   try {
-    resume = await Resume.findOne({ _id: resumeId }).populate(
-      "professionalExperiences"
-    );
+    // resume = await Resume.findOne({ _id: resumeId }).populate(
+    //   "professionalExperiences"
+    // );
+    resume = await Resume.findOne({ _id: resumeId }).populate([
+      "professionalExperiences",
+      "skills",
+    ]);
   } catch (err) {
     console.log(err);
   }
