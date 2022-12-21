@@ -69,9 +69,6 @@ const EditResume = () => {
 
   useEffect(() => {
     var token = localStorage.getItem("token");
-    // console.log({ token20f: token });
-
-    // token = token.slice(1,-1)
 
     const headers = {
       authorization: `Bearer ${token}`,
@@ -146,7 +143,7 @@ const EditResume = () => {
           )}
 
           {/* edit skills */}
-          {/* {!editStatus.skills ? (
+          {!editStatus.skills ? (
             <ResumeEditCardClosed
               title="Skills"
               cardIcon={skillsIcon}
@@ -160,19 +157,8 @@ const EditResume = () => {
               setParentsEditStatus={setEditStatus}
               setParentsResumeDetails={setResumeDetails}
             />
-          )} */}
-          <ResumeEditCardClosed
-            title="Skills"
-            cardIcon={skillsIcon}
-            setParentsEditStatus={setEditStatus}
-            editStatusKey="skills"
-          />
-          <EditResumeSkillsOpen
-            resume={resumeDetails}
-            skills={resumeDetails.skills}
-            setParentsEditStatus={setEditStatus}
-            setParentsResumeDetails={setResumeDetails}
-          />
+          )}
+
           {/* <EditResumeSkillsOpen
             resume={resumeDetails}
             skills={resumeDetails.skills}

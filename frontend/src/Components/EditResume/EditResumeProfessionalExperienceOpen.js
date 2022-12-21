@@ -26,6 +26,8 @@ const EditResumeProfessionalExperienceOpen = ({
     setAddProfessionalExperienceCardStatus,
   ] = useState(false);
 
+  console.log({ professionalExperiencesCurrent });
+
   return (
     <>
       <div className={styles.pe__container}>

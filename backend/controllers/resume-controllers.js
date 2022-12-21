@@ -345,6 +345,8 @@ const editResumeEditProfessionalExperience = async (req, res) => {
     professionalExperienceId,
   } = req.body;
 
+  console.log({ b: req.body });
+
   var existingProfessionalExperience;
 
   try {
@@ -378,10 +380,23 @@ const editResumeEditProfessionalExperience = async (req, res) => {
 
   console.log({ updatedProfessionalExperience });
 
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId }).populate(
+      "professionalExperiences"
+    );
+  } catch (err) {
+    console.log(err);
+  }
+
+  console.log({ existingResume });
+
   return res.json({
     message: "updated the professional experience",
     status: 200,
     updatedProfessionalExperience,
+    existingResume,
   });
 };
 
@@ -565,7 +580,6 @@ const editResumeDeleteSkill = async (req, res) => {
 
   return res.json({
     updatedResume,
-
     message: "deleted the skill",
     status: 200,
   });

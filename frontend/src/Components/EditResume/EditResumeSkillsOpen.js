@@ -21,24 +21,32 @@ const EditResumeSkillsOpen = ({
 
   // console.log({ skillsCurrent });
   // console.log({ resume, skills });
+  // console.log({ selectedSkill });
   return (
     <div className={styles.s__container}>
       <h3 className={styles.s__title}>Edit Skills</h3>
-      {skillsCurrent?.map((skill) => (
+      {/* {editSkillCardStatus && (
+
+      )
+
+      } */}
+      {!editSkillCardStatus && (
         <EditResumeSkillsCard
-          skill={skill}
-          key={skill._id}
+          skillsCurrent={skillsCurrent}
+          setSkillsCurrentParent={setSkillsCurrent}
           setSelectedSkillParent={setSelectedSkill}
           setEditSkillCardStatusParent={setEditSkillCardStatus}
+          setParentsResumeDetails={setParentsResumeDetails}
         />
-      ))}
+      )}
+
       <div className={styles.buttons}>
         <button
           className={styles.buttons_cancel}
           onClick={() =>
             setParentsEditStatus((prevState) => ({
               ...prevState,
-              professionalExperiences: !prevState.professionalExperiences,
+              skills: !prevState.skills,
             }))
           }
         >

@@ -7,19 +7,17 @@ import { BASE_URL } from "../../Keys/Keys";
 
 import styles from "./EditResumeProfessionalExperienceCardOpen.module.css";
 
-const EditResumeProfessionalExperienceCardOpen = ({
-  selectedProfessionalExperience,
-  setEditProfessionalExperienceCardStatusParent,
-  setProfessionalExperiencesCurrentParent,
+const EditResumeSkillsCardOpen = ({
+  selectedSkill,
+  setEditSkillCardStatusParent,
+  setSkillsCurrentParent,
   setParentsResumeDetails,
 }) => {
-  const [professionalExperience, setProfessionalExperience] = useState(
-    selectedProfessionalExperience
-  );
+  const [skill, setSkill] = useState(selectedSkill);
 
   const setInputHandler = (e) => {
-    setProfessionalExperience({
-      ...professionalExperience,
+    setSkill({
+      ...skill,
       [e.target.name]: e.target.value,
     });
   };
@@ -35,62 +33,28 @@ const EditResumeProfessionalExperienceCardOpen = ({
       authorization: `Bearer ${token}`,
     };
 
-    if (selectedProfessionalExperience == null) {
+    if (selectedSkill == null) {
       axios({
         method: "PATCH",
-        url: `${BASE_URL}/api/resumes/edit-resume-add-professional-experience`,
-        data: { ...professionalExperience, resumeId: resumeId },
+        url: `${BASE_URL}/api/resumes/edit-resume-add-skill`,
+        data: { ...skill, resumeId: resumeId },
         headers,
       })
         .then((res) => {
           console.log({ resp: res.data });
 
           if (res.data.status == 200) {
-            setEditProfessionalExperienceCardStatusParent(
-              (prevState) => !prevState
-            );
-            setProfessionalExperiencesCurrentParent(
-              res.data.updatedResume.professionalExperiences
-            );
+            setEditSkillCardStatusParent((prevState) => !prevState);
+            setSkillsCurrentParent(res.data.updatedResume.skills);
             setParentsResumeDetails((prevState) => ({
               ...prevState,
-              professionalExperiences:
-                res.data.updatedResume.professionalExperiences,
+              professionalExperiences: res.data.resume.professionalExperiences,
             }));
           }
         })
         .catch((err) => console.log(err));
     } else {
       //patch request api
-
-      axios({
-        method: "PATCH",
-        url: `${BASE_URL}/api/resumes/edit-resume-edit-professional-experience`,
-        data: {
-          ...professionalExperience,
-          professionalExperienceId: professionalExperience._id,
-          resumeId: resumeId,
-        },
-        headers,
-      })
-        .then((res) => {
-          console.log({ resp: res.data });
-
-          if (res.data.status == 200) {
-            setEditProfessionalExperienceCardStatusParent(
-              (prevState) => !prevState
-            );
-            setProfessionalExperiencesCurrentParent(
-              res.data.updatedResume.professionalExperiences
-            );
-            setParentsResumeDetails((prevState) => ({
-              ...prevState,
-              professionalExperiences:
-                res.data.updatedResume.professionalExperiences,
-            }));
-          }
-        })
-        .catch((err) => console.log(err));
     }
 
     // axios.patch()
@@ -190,4 +154,4 @@ const EditResumeProfessionalExperienceCardOpen = ({
   );
 };
 
-export default EditResumeProfessionalExperienceCardOpen;
+export default EditResumeSkillsCardOpen;
