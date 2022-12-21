@@ -270,6 +270,7 @@ const editResumeProfileDescription = async (req, res) => {
   });
 };
 
+//professional experience
 const editResumeAddProfessionalExperience = async (req, res) => {
   var {
     jobTitle,
@@ -303,7 +304,7 @@ const editResumeAddProfessionalExperience = async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-  // console.log({ existingResume });
+
   existingResume.professionalExperiences = [
     ...existingResume.professionalExperiences,
     newProfessionalExperience,
@@ -326,8 +327,6 @@ const editResumeAddProfessionalExperience = async (req, res) => {
     message: "Added professoinal experience",
     updatedResume: updatedResume,
   });
-
-  // return res.json({ message: "" });
 };
 
 const editResumeEditProfessionalExperience = async (req, res) => {
@@ -374,7 +373,7 @@ const editResumeEditProfessionalExperience = async (req, res) => {
   }
 
   console.log({ updatedProfessionalExperience });
-  // return res.json({ message: "trail" });
+
   return res.json({
     message: "updated the professional experience",
     status: 200,
@@ -434,7 +433,9 @@ const editResumeDeleteProfessionalExperience = async (req, res) => {
   });
 };
 
-const editResumeAddSkills = async (req, res) => {
+//skills
+
+const editResumeAddSkill = async (req, res) => {
   var { skillName, skillLevel, resumeId } = req.body;
 
   var existingResume;
@@ -477,6 +478,95 @@ const editResumeAddSkills = async (req, res) => {
   });
 };
 
+const editResumeEditSkill = async (req, res) => {
+  var { skillName, skillLevel, resumeId, skillId } = req.body;
+
+  var existingSkill;
+
+  try {
+    existingSkill = await Skill.findOne({
+      _id: skillId,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  existingSkill = {
+    ...existingSkill._doc,
+    skillName,
+    skillLevel,
+  };
+
+  try {
+    updatedSkill = await Skill.findByIdAndUpdate(
+      { _id: skillId },
+      existingSkill,
+      { new: true }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+
+  console.log({ updatedSkill });
+
+  return res.json({
+    message: "updated the skill ",
+    status: 200,
+    updatedSkill,
+  });
+};
+
+const editResumeDeleteSkill = async (req, res) => {
+  var { skillId, resumeId } = req.body;
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId });
+  } catch (err) {
+    console.log(err);
+  }
+  console.log({ existingResume });
+
+  var newSkillArray = existingResume.skills.filter(
+    (skill) => skill._id != skillId
+  );
+
+  // console.log({ newProfessionalExperienceArray });
+  existingResume = {
+    ...existingResume._doc,
+    skills: newSkillArray,
+  };
+
+  // console.log({ existingResume });
+
+  var updatedSkill;
+  try {
+    await Skill.deleteOne({ _id: skillId });
+  } catch (err) {
+    console.log(err);
+  }
+
+  var updatedResume;
+
+  try {
+    updatedResume = await Resume.findByIdAndUpdate(
+      { _id: resumeId },
+      existingResume,
+      { new: true }
+    ).populate("skills");
+  } catch (err) {
+    console.log(err);
+  }
+
+  return res.json({
+    updatedResume,
+
+    message: "deleted the skill",
+    status: 200,
+  });
+};
+
 exports.createResume = createResume;
 exports.getResumes = getResumes;
 exports.getResumeById = getResumeById;
@@ -491,4 +581,6 @@ exports.editResumeDeleteProfessionalExperience =
   editResumeDeleteProfessionalExperience;
 
 //skills
-exports.editResumeAddSkills = editResumeAddSkills;
+exports.editResumeAddSkill = editResumeAddSkill;
+exports.editResumeEditSkill = editResumeEditSkill;
+exports.editResumeDeleteSkill = editResumeDeleteSkill;

@@ -59,11 +59,21 @@ router.patch(
 //skills
 
 router.patch(
-  "/edit-resume-add-skills",
+  "/edit-resume-add-skill",
   middleWares.authenticateToken,
-  resumeControllers.editResumeAddSkills
+  resumeControllers.editResumeAddSkill
 );
 
-// edit-resume-add-skills
+router.patch(
+  "/edit-resume-edit-skill",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeEditSkill
+);
+
+router.patch(
+  "/edit-resume-delete-skill",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeDeleteSkill
+);
 
 module.exports = router;
