@@ -528,10 +528,21 @@ const editResumeEditSkill = async (req, res) => {
 
   console.log({ updatedSkill });
 
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId }).populate("skills");
+  } catch (err) {
+    console.log(err);
+  }
+
+  console.log({ existingResume });
+
   return res.json({
     message: "updated the skill ",
     status: 200,
     updatedSkill,
+    updatedResume: existingResume,
   });
 };
 
@@ -545,19 +556,15 @@ const editResumeDeleteSkill = async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-  console.log({ existingResume });
 
   var newSkillArray = existingResume.skills.filter(
     (skill) => skill._id != skillId
   );
 
-  // console.log({ newProfessionalExperienceArray });
   existingResume = {
     ...existingResume._doc,
     skills: newSkillArray,
   };
-
-  // console.log({ existingResume });
 
   var updatedSkill;
   try {
@@ -577,6 +584,8 @@ const editResumeDeleteSkill = async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+
+  console.log({ updatedResume });
 
   return res.json({
     updatedResume,

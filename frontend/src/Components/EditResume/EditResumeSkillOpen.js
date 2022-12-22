@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import EditResumeSkillCard from "./EditResumeSkillCard";
 import EditResumeSkillCardOpen from "./EditResumeSkillCardOpen";
 
+import add_icon from "../../icons/add_icon.png";
+
 import styles from "./EditResumeSkillOpen.module.css";
 
 const EditResumeSkillsOpen = ({
@@ -26,13 +28,8 @@ const EditResumeSkillsOpen = ({
   // console.log({ resume, skills });
   // console.log({ selectedSkill });
   return (
-    <div className={styles.s__container}>
+    <div className={styles.pe__container}>
       <h3 className={styles.s__title}>Edit Skills</h3>
-      {/* {editSkillCardStatus && (
-
-      )
-
-      } */}
 
       {editSkillCardStatus && (
         <EditResumeSkillCardOpen
@@ -50,6 +47,23 @@ const EditResumeSkillsOpen = ({
           setEditSkillCardStatusParent={setEditSkillCardStatus}
           setParentsResumeDetails={setParentsResumeDetails}
         />
+      )}
+
+      {!editSkillCardStatus && (
+        <div className={styles.button_container}>
+          <button
+            className={styles.add_pe_button}
+            onClick={() => {
+              setEditSkillCardStatus((prevState) => !prevState);
+              setSelectedSkill(null);
+            }}
+          >
+            <span>
+              <img src={add_icon} className={styles.add_pe_button__add_icon} />
+            </span>
+            Skill
+          </button>
+        </div>
       )}
 
       <div className={styles.buttons}>

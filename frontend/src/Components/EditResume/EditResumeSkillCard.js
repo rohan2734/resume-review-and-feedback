@@ -38,10 +38,13 @@ const EditResumeSkillsCard = ({
         console.log({ resp: res.data });
 
         if (res.data.status == 200) {
-          setSkillsCurrentParent(res.data.updatedResume.skills);
+          setSkillsCurrentParent((prevState) => [
+            ...prevState,
+            res.data.updatedResume.skills,
+          ]);
           setParentsResumeDetails((prevState) => ({
             ...prevState,
-            skills: res.data.updatedResume.skill,
+            skills: [...prevState.skills, res.data.updatedResume.skills],
           }));
         }
       })

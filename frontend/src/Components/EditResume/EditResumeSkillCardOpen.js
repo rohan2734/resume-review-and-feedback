@@ -15,6 +15,8 @@ const EditResumeSkillCardOpen = ({
 }) => {
   const [skill, setSkill] = useState(selectedSkill);
 
+  console.log({ selectedSkill });
+
   const setInputHandler = (e) => {
     setSkill({
       ...skill,
@@ -45,7 +47,10 @@ const EditResumeSkillCardOpen = ({
 
           if (res.data.status == 200) {
             setEditSkillCardStatusParent((prevState) => !prevState);
-            setSkillsCurrentParent(res.data.updatedResume.skills);
+            setSkillsCurrentParent((prevState) => [
+              ...prevState,
+              res.data.updatedResume.skills,
+            ]);
             setParentsResumeDetails((prevState) => ({
               ...prevState,
               skills: res.data.updatedResume.skills,
@@ -71,7 +76,10 @@ const EditResumeSkillCardOpen = ({
 
           if (res.data.status == 200) {
             setEditSkillCardStatusParent((prevState) => !prevState);
-            setSkillsCurrentParent(res.data.updatedResume.skills);
+            setSkillsCurrentParent((prevState) => [
+              ...prevState,
+              res.data.updatedResume.skills,
+            ]);
             setParentsResumeDetails((prevState) => ({
               ...prevState,
               skills: res.data.updatedResume.skills,
@@ -102,14 +110,13 @@ const EditResumeSkillCardOpen = ({
           <div className={styles.input_date_container}>
             <div className={styles.input_container}>
               <label className={styles.input_label}>Skill Level</label>
-              {/* <input
-                className={styles.input_item}
-                value={skill?.skillLevel}
+
+              <select
                 name="skillLevel"
-                type="text"
                 onChange={setInputHandler}
-              /> */}
-              <select name="skillLevel">
+                value={skill?.skillLevel}
+                className={styles.input_item}
+              >
                 <option value="novice">Novice</option>
                 <option value="beginner">beginner</option>
                 <option value="skillful">skillful</option>
