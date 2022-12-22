@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import EditResumeSkillsCard from "./EditResumeSkillsCard";
-import styles from "./EditResumeSkillsOpen.module.css";
+
+import EditResumeSkillCard from "./EditResumeSkillCard";
+import EditResumeSkillCardOpen from "./EditResumeSkillCardOpen";
+
+import styles from "./EditResumeSkillOpen.module.css";
 
 const EditResumeSkillsOpen = ({
   resume,
@@ -30,8 +33,17 @@ const EditResumeSkillsOpen = ({
       )
 
       } */}
+
+      {editSkillCardStatus && (
+        <EditResumeSkillCardOpen
+          selectedSkill={selectedSkill}
+          setEditSkillCardStatusParent={setEditSkillCardStatus}
+          setSkillsCurrentParent={setSkillsCurrent}
+          setParentsResumeDetails={setParentsResumeDetails}
+        />
+      )}
       {!editSkillCardStatus && (
-        <EditResumeSkillsCard
+        <EditResumeSkillCard
           skillsCurrent={skillsCurrent}
           setSkillsCurrentParent={setSkillsCurrent}
           setSelectedSkillParent={setSelectedSkill}

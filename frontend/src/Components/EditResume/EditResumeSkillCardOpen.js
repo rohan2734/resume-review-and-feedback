@@ -7,7 +7,7 @@ import { BASE_URL } from "../../Keys/Keys";
 
 import styles from "./EditResumeProfessionalExperienceCardOpen.module.css";
 
-const EditResumeSkillsCardOpen = ({
+const EditResumeSkillCardOpen = ({
   selectedSkill,
   setEditSkillCardStatusParent,
   setSkillsCurrentParent,
@@ -48,13 +48,37 @@ const EditResumeSkillsCardOpen = ({
             setSkillsCurrentParent(res.data.updatedResume.skills);
             setParentsResumeDetails((prevState) => ({
               ...prevState,
-              professionalExperiences: res.data.resume.professionalExperiences,
+              skills: res.data.updatedResume.skills,
             }));
           }
         })
         .catch((err) => console.log(err));
     } else {
       //patch request api
+
+      axios({
+        method: "PATCH",
+        url: `${BASE_URL}/api/resumes/edit-resume-edit-skill`,
+        data: {
+          ...skill,
+          skillId: skill._id,
+          resumeId: resumeId,
+        },
+        headers,
+      })
+        .then((res) => {
+          console.log({ resp: res.data });
+
+          if (res.data.status == 200) {
+            setEditSkillCardStatusParent((prevState) => !prevState);
+            setSkillsCurrentParent(res.data.updatedResume.skills);
+            setParentsResumeDetails((prevState) => ({
+              ...prevState,
+              skills: res.data.updatedResume.skills,
+            }));
+          }
+        })
+        .catch((err) => console.log(err));
     }
 
     // axios.patch()
@@ -65,82 +89,42 @@ const EditResumeSkillsCardOpen = ({
       <form onSubmit={formSubmitHandler}>
         <div className={styles.input_job_title_and_date_container}>
           <div className={styles.input_container}>
-            <label className={styles.input_label}>Job Title</label>
+            <label className={styles.input_label}>Skill Name</label>
             <input
               className={styles.input_item}
               // value={"Full Name"}
-              value={professionalExperience?.jobTitle}
-              name="jobTitle"
+              value={skill?.skillName}
+              name="skillName"
               type="text"
               onChange={setInputHandler}
             />
           </div>
           <div className={styles.input_date_container}>
             <div className={styles.input_container}>
-              <label className={styles.input_label}>Start Date</label>
-              <input
+              <label className={styles.input_label}>Skill Level</label>
+              {/* <input
                 className={styles.input_item}
-                value={professionalExperience?.startDate}
-                name="startDate"
-                type="date"
+                value={skill?.skillLevel}
+                name="skillLevel"
+                type="text"
                 onChange={setInputHandler}
-              />
-            </div>
-            <div className={styles.input_container}>
-              <label className={styles.input_label}>End Date</label>
-              <input
-                className={styles.input_item}
-                value={professionalExperience?.endDate}
-                name="endDate"
-                type="date"
-                onChange={setInputHandler}
-              />
+              /> */}
+              <select name="skillLevel">
+                <option value="novice">Novice</option>
+                <option value="beginner">beginner</option>
+                <option value="skillful">skillful</option>
+                <option value="experienced">experienced</option>
+                <option value="expert">expert</option>
+              </select>
             </div>
           </div>
-        </div>
-
-        <div className={styles.input_employer_location}>
-          <div className={styles.input_container}>
-            <label className={styles.input_label}>Employer</label>
-            <input
-              className={styles.input_item}
-              value={professionalExperience?.employer}
-              name="employer"
-              type="text"
-              onChange={setInputHandler}
-            />
-          </div>
-          <div className={styles.input_container}>
-            <label className={styles.input_label}>Location </label>
-            <input
-              className={styles.input_item}
-              value={professionalExperience?.location}
-              name="location"
-              type="text"
-              onChange={setInputHandler}
-            />
-          </div>
-        </div>
-
-        <div className={styles.input_container}>
-          <label className={styles.input_label}>Description</label>
-
-          <textarea
-            className={styles.input_item}
-            value={professionalExperience?.description}
-            name="description"
-            type="text"
-            onChange={setInputHandler}
-          />
         </div>
 
         <div className={styles.buttons}>
           <button
             className={styles.buttons_cancel}
             onClick={() => {
-              setEditProfessionalExperienceCardStatusParent(
-                (prevState) => !prevState
-              );
+              setEditSkillCardStatusParent((prevState) => !prevState);
             }}
           >
             cancel
@@ -154,4 +138,4 @@ const EditResumeSkillsCardOpen = ({
   );
 };
 
-export default EditResumeSkillsCardOpen;
+export default EditResumeSkillCardOpen;

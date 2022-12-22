@@ -13,7 +13,7 @@ import EditResumeNameDetailsOpen from "../Components/EditResume/EditResumeNameDe
 import EditResumeProfileOpen from "../Components/EditResume/EditResumeProfileOpen";
 import ResumeEditCardClosed from "../Components/EditResume/ResumeEditCardClosed";
 import EditResumeProfessionalExperienceOpen from "../Components/EditResume/EditResumeProfessionalExperienceOpen";
-import EditResumeSkillsOpen from "../Components/EditResume/EditResumeSkillsOpen";
+import EditResumeSkillOpen from "../Components/EditResume/EditResumeSkillOpen";
 
 // icons
 import profileIcon from "../icons/profile_icon.png";
@@ -151,7 +151,7 @@ const EditResume = () => {
               editStatusKey="skills"
             />
           ) : (
-            <EditResumeSkillsOpen
+            <EditResumeSkillOpen
               resume={resumeDetails}
               skills={resumeDetails.skills}
               setParentsEditStatus={setEditStatus}
