@@ -27,9 +27,8 @@ const resumeSchema = new mongoose.Schema({
   skills: [{ type: mongoose.Schema.Types.ObjectId, ref: "Skill" }],
   education: [{ type: mongoose.Schema.Types.ObjectId, ref: "Education" }],
   projects: [{ type: mongoose.Schema.Types.ObjectId, ref: "Project" }],
-  certificates: [{ type: mongoose.Schema.Types.ObjectId, ref: "Certificate" }],
   awards: [{ type: mongoose.Schema.Types.ObjectId, ref: "Award" }],
-
+  certificates: [{ type: mongoose.Schema.Types.ObjectId, ref: "Certificate" }],
   languages: [{ type: mongoose.Schema.Types.ObjectId, ref: "Language" }],
 
   //belongs to user
