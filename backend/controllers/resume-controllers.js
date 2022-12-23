@@ -3,6 +3,7 @@ const Resume = require("../models/resume");
 const User = require("../models/user");
 const ProfessionalExperience = require("../models/professionalExperience");
 const Skill = require("../models/skill");
+const Education = require("../models/education");
 
 //3rd party modules
 const jwt = require("jsonwebtoken");
@@ -366,7 +367,7 @@ const editResumeEditProfessionalExperience = async (req, res) => {
     location,
     description,
   };
-
+  var updatedProfessionalExperience;
   try {
     updatedProfessionalExperience =
       await ProfessionalExperience.findByIdAndUpdate(
@@ -516,6 +517,8 @@ const editResumeEditSkill = async (req, res) => {
     skillLevel,
   };
 
+  var updatedSkill;
+
   try {
     updatedSkill = await Skill.findByIdAndUpdate(
       { _id: skillId },
@@ -594,11 +597,184 @@ const editResumeDeleteSkill = async (req, res) => {
   });
 };
 
+//education
+
+const editResumeAddEducation = async (req, res) => {
+  var { degree, school, location, description, startDate, endDate, resumeId } =
+    req.body;
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId });
+  } catch (err) {
+    console.log(err);
+  }
+
+  var newEducation = new Education({
+    degree,
+    school,
+    location,
+    description,
+    startDate,
+    endDate,
+  });
+
+  try {
+    newEducation = await newEducation.save();
+  } catch (err) {
+    console.log(err);
+  }
+
+  existingResume.education = [...existingResume.education, newEducation];
+
+  var updatedResume;
+
+  try {
+    updatedResume = await Resume.findByIdAndUpdate(
+      { _id: resumeId },
+      existingResume,
+      { new: true }
+    ).populate("education");
+  } catch (err) {
+    console.log(err);
+  }
+
+  return res.json({
+    status: 200,
+    message: "Added education",
+    updatedResume: updatedResume,
+  });
+};
+
+const editResumeEditEducation = async (req, res) => {
+  var {
+    degree,
+    school,
+    location,
+    description,
+    startDate,
+    endDate,
+    resumeId,
+    educationId,
+  } = req.body;
+
+  // console.log({ b: req.body });
+
+  var existingEducation;
+
+  try {
+    existingEducation = await Education.findOne({
+      _id: educationId,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  existingEducation = {
+    ...existingEducation._doc,
+    degree,
+    school,
+    location,
+    description,
+    startDate,
+    endDate,
+  };
+
+  var updatedEducation;
+  try {
+    updatedEducation = await Education.findByIdAndUpdate(
+      { _id: educationId },
+      existingEducation,
+      { new: true }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+
+  console.log({ updatedEducation });
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId }).populate(
+      "education"
+    );
+  } catch (err) {
+    console.log(err);
+  }
+
+  console.log({ existingResume });
+
+  return res.json({
+    message: "updated the education",
+    status: 200,
+    updatedSkill,
+    existingResume,
+  });
+};
+
+const editResumeDeleteEducation = async (req, res) => {
+  var { educationId, resumeId } = req.body;
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId });
+  } catch (err) {
+    console.log(err);
+  }
+  console.log({ existingResume });
+
+  var newEducationArray = existingResume.education.filter(
+    (education) => education._id != educationId
+  );
+
+  // console.log({ newProfessionalExperienceArray });
+  existingResume = {
+    ...existingResume._doc,
+    education: newEducationArray,
+  };
+
+  // console.log({ existingResume });
+
+  var updatedEducation;
+  try {
+    await Education.deleteOne({ _id: educationId });
+  } catch (err) {
+    console.log(err);
+  }
+
+  var updatedResume;
+
+  try {
+    updatedResume = await Resume.findByIdAndUpdate(
+      { _id: resumeId },
+      existingResume,
+      { new: true }
+    ).populate("education");
+  } catch (err) {
+    console.log(err);
+  }
+  // console.log({ updatedResume });
+  return res.json({
+    updatedResume,
+    message: "deleted the education",
+    status: 200,
+  });
+};
+
+//resume
 exports.createResume = createResume;
 exports.getResumes = getResumes;
 exports.getResumeById = getResumeById;
+
+//name details
 exports.editResumeNameDetails = editResumeNameDetails;
+
+//professional description
 exports.editResumeProfileDescription = editResumeProfileDescription;
+
 //professional experience
 exports.editResumeAddProfessionalExperience =
   editResumeAddProfessionalExperience;
@@ -611,3 +787,8 @@ exports.editResumeDeleteProfessionalExperience =
 exports.editResumeAddSkill = editResumeAddSkill;
 exports.editResumeEditSkill = editResumeEditSkill;
 exports.editResumeDeleteSkill = editResumeDeleteSkill;
+
+//education
+exports.editResumeAddEducation = editResumeAddEducation;
+exports.editResumeEditEducation = editResumeEditEducation;
+exports.editResumeDeleteEducation = editResumeDeleteEducation;

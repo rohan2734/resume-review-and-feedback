@@ -76,4 +76,23 @@ router.patch(
   resumeControllers.editResumeDeleteSkill
 );
 
+//education
+router.patch(
+  "/edit-resume-add-education",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeAddEducation
+);
+
+router.patch(
+  "/edit-resume-edit-education",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeEditEducation
+);
+
+router.patch(
+  "/edit-resume-delete-education",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeDeleteEducation
+);
+
 module.exports = router;

@@ -25,10 +25,11 @@ const resumeSchema = new mongoose.Schema({
     { type: mongoose.Schema.Types.ObjectId, ref: "ProfessionalExperience" },
   ],
   skills: [{ type: mongoose.Schema.Types.ObjectId, ref: "Skill" }],
+  education: [{ type: mongoose.Schema.Types.ObjectId, ref: "Education" }],
   projects: [{ type: mongoose.Schema.Types.ObjectId, ref: "Project" }],
   certificates: [{ type: mongoose.Schema.Types.ObjectId, ref: "Certificate" }],
   awards: [{ type: mongoose.Schema.Types.ObjectId, ref: "Award" }],
-  education: { type: mongoose.Schema.Types.ObjectId, ref: "Education" },
+
   languages: [{ type: mongoose.Schema.Types.ObjectId, ref: "Language" }],
 
   //belongs to user
