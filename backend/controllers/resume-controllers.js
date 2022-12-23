@@ -709,7 +709,7 @@ const editResumeEditEducation = async (req, res) => {
   return res.json({
     message: "updated the education",
     status: 200,
-    updatedSkill,
+    updatedEducation,
     existingResume,
   });
 };
