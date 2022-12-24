@@ -1,7 +1,7 @@
 import react, { useState } from "react";
 
 import EditResumeProfessionalExperienceCardOpen from "./EditResumeProfessionalExperienceCardOpen";
-import EditProfessionalExperienceCard from "./EditResumeProfessionalExperienceCard";
+import EditResumeProfessionalExperienceCard from "./EditResumeProfessionalExperienceCard";
 
 import add_icon from "../../icons/add_icon.png";
 
@@ -47,7 +47,7 @@ const EditResumeProfessionalExperienceOpen = ({
         )}
         {/* professional experience card list */}
         {!editProfessionalExperienceCardStatus && (
-          <EditProfessionalExperienceCard
+          <EditResumeProfessionalExperienceCard
             professionalExperiencesCurrent={professionalExperiencesCurrent}
             setSelectedProfessionalExperienceParent={
               setSelectedProfessionalExperience

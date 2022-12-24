@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import react, { useState } from "react";
 
+import EditResumeEducationCardOpen from "./EditResumeProfessionalExperienceCardOpen";
 import EditResumeEducationCard from "./EditResumeEducationCard";
-import EditResumeEducationCardOpen from "./EditResumeEducationCardOpen";
 
 import add_icon from "../../icons/add_icon.png";
 
@@ -17,69 +16,69 @@ const EditResumeEducationOpen = ({
   const [educationCurrent, setEducationCurrent] = useState(education);
   const [selectedEducation, setSelectedEducation] = useState(null);
   const [editEducationCardStatus, setEditEducationCardStatus] = useState(false);
+  const [addEducationCardStatus, setAddEducationCardStatus] = useState(false);
 
-  var { resumeId } = useParams();
+  console.log({ educationCurrent });
 
-  useEffect(() => {
-    setEducationCurrent(education);
-  }, [education]);
-
-  // console.log({ skillsCurrent });
-  // console.log({ resume, skills });
-  // console.log({ selectedSkill });
   return (
-    <div className={styles.pe__container}>
-      <h3 className={styles.s__title}>Edit Education</h3>
+    <>
+      <div className={styles.pe__container}>
+        <h3 className={styles.pe__title}>Edit Education </h3>
+        {/* edit professional experience card open */}
+        {editEducationCardStatus && (
+          <EditResumeEducationCardOpen
+            selectedEducation={selectedEducation}
+            setEditEducationCardStatusParent={setEditEducationCardStatus}
+            setEducationCurrentParent={setEducationCurrent}
+            setParentsResumeDetails={setParentsResumeDetails}
+          />
+        )}
+        {/* professional experience card list */}
+        {!editEducationCardStatus && (
+          <EditResumeEducationCard
+            educationCurrent={educationCurrent}
+            setSelectedEducationParent={setSelectedEducation}
+            setEditEducationCardStatusParent={setEditEducationCardStatus}
+            setEducationCurrentParent={setEducationCurrent}
+            setParentsResumeDetails={setParentsResumeDetails}
+          />
+        )}
 
-      {editEducationCardStatus && (
-        <EditResumeEducationCardOpen
-          selectedEducation={selectedEducation}
-          setEditEducationCardStatusParent={setEditEducationCardStatus}
-          setEducationCurrentParent={setEducationCurrent}
-          setParentsResumeDetails={setParentsResumeDetails}
-        />
-      )}
-      {!editEducationCardStatus && (
-        <EditResumeEducationCard
-          educationCurrent={educationCurrent}
-          setEducationCurrentParent={setEducationCurrent}
-          setSelectedEducationParent={setSelectedEducation}
-          setEditEducationCardStatusParent={setEditEducationCardStatus}
-          setParentsResumeDetails={setParentsResumeDetails}
-        />
-      )}
+        {!editEducationCardStatus && (
+          <div className={styles.button_container}>
+            <button
+              className={styles.add_pe_button}
+              onClick={() => {
+                setEditEducationCardStatus((prevState) => !prevState);
+                setSelectedEducation(null);
+              }}
+            >
+              <span>
+                <img
+                  src={add_icon}
+                  className={styles.add_pe_button__add_icon}
+                />
+              </span>
+              Education
+            </button>
+          </div>
+        )}
 
-      {!editEducationCardStatus && (
-        <div className={styles.button_container}>
+        <div className={styles.buttons}>
           <button
-            className={styles.add_pe_button}
-            onClick={() => {
-              setEditEducationCardStatus((prevState) => !prevState);
-              setSelectedEducation(null);
-            }}
+            className={styles.buttons_cancel}
+            onClick={() =>
+              setParentsEditStatus((prevState) => ({
+                ...prevState,
+                education: !prevState.education,
+              }))
+            }
           >
-            <span>
-              <img src={add_icon} className={styles.add_pe_button__add_icon} />
-            </span>
-            Education
+            close
           </button>
         </div>
-      )}
-
-      <div className={styles.buttons}>
-        <button
-          className={styles.buttons_cancel}
-          onClick={() =>
-            setParentsEditStatus((prevState) => ({
-              ...prevState,
-              education: !prevState.education,
-            }))
-          }
-        >
-          close
-        </button>
       </div>
-    </div>
+    </>
   );
 };
 

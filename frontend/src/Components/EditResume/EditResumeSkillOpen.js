@@ -27,6 +27,7 @@ const EditResumeSkillsOpen = ({
   // console.log({ skillsCurrent });
   // console.log({ resume, skills });
   // console.log({ selectedSkill });
+  console.log("entered");
   return (
     <div className={styles.pe__container}>
       <h3 className={styles.s__title}>Edit Skills</h3>
