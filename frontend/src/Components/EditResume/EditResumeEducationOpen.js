@@ -16,7 +16,6 @@ const EditResumeEducationOpen = ({
   const [educationCurrent, setEducationCurrent] = useState(education);
   const [selectedEducation, setSelectedEducation] = useState(null);
   const [editEducationCardStatus, setEditEducationCardStatus] = useState(false);
-  const [addEducationCardStatus, setAddEducationCardStatus] = useState(false);
 
   console.log({ educationCurrent });
 

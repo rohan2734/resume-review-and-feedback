@@ -49,7 +49,7 @@ const EditResume = () => {
     //embedded objects
     professionalExperiences: [],
     skills: [],
-    education: {},
+    education: [],
     projects: [],
     awards: [],
     certificates: [],
@@ -169,7 +169,7 @@ const EditResume = () => {
                         <img  className={styles.resume__edit_card_dropdown} src={editResumeDropdown} />
                     </div> */}
 
-          {!editStatus.skills ? (
+          {!editStatus.education ? (
             <ResumeEditCardClosed
               title="Education"
               cardIcon={educationIcon}

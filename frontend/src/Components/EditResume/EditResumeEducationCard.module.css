@@ -1,4 +1,4 @@
-/* .pe_card {
+.pe_card {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -7,26 +7,14 @@
   border-radius: 5px;
   cursor: pointer;
   margin: 10px 0;
-} */
+}
 
-.pe__container {
-  background: white;
-  padding: 1rem;
-  border-radius: 5px;
-  margin: 10px 0;
-}
-/*
-.pe__title {
-  margin: 0 0 10px 0;
-  font-weight: 1200;
-  font-size: 1.6rem;
-}
 .job_and_company {
   margin: 0;
 }
 .job_title {
   font-size: 1rem;
-  font-weight: 600;s
+  font-weight: 600;
 }
 .company {
   font-weight: 300;
@@ -36,83 +24,4 @@
   margin: 0;
   font-weight: 400;
   font-size: 0.8rem;
-}
-.input_container {
-  margin-right: 10px;
-}
-
-.input_label {
-  display: block;
-  font-size: 12px;
-}
-.input_item {
-  background-color: #f3f4f6;
-  border: 0px;
-  border-radius: 5px;
-  padding: 8px;
-  width: 200px;
-}
-.input_date_container {
-  display: flex;
-}
-.input_employer_location {
-  display: flex;
-  justify-content: space-between;
-}
-.input_job_title_and_date_container {
-  display: flex;
-  justify-content: space-between;
-}
-.textarea {
-  width: 97% !important;
-} */
-.button_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.add_pe_button {
-  border: 0;
-  text-align: center;
-  color: white;
-  padding: 10px 40px;
-  background-color: #5bb318;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.add_pe_button__add_icon {
-  margin: 0 10px;
-}
-.pe_icon {
-  height: 1.5rem;
-  width: 1.5rem;
-  margin: 0 5px;
-  cursor: pointer;
-}
-
-.buttons {
-  text-align: right;
-  margin: 10px 0;
-}
-.button_container {
-  margin: 10px;
-}
-.buttons_cancel {
-  border: 0;
-  background-color: transparent;
-  padding: 10px;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-}
-.buttons_save {
-  border: 0;
-  padding: 10px 40px;
-  border-radius: 5px;
-  color: white;
-  background-color: #5bb318;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
 }

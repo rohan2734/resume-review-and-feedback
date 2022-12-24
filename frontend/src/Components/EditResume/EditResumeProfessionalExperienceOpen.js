@@ -21,10 +21,6 @@ const EditResumeProfessionalExperienceOpen = ({
     editProfessionalExperienceCardStatus,
     setEditProfessionalExperienceCardStatus,
   ] = useState(false);
-  const [
-    addProfessionalExperienceCardStatus,
-    setAddProfessionalExperienceCardStatus,
-  ] = useState(false);
 
   console.log({ professionalExperiencesCurrent });
 

@@ -10,7 +10,7 @@ import delete_icon_black from "../../icons/delete_icon_black.png";
 
 import styles from "./EditResumeProfessionalExperienceCard.module.css";
 
-const EditProfessionalExperienceCard = ({
+const EditResumeProfessionalExperienceCard = ({
   professionalExperiencesCurrent,
   setSelectedProfessionalExperienceParent,
   setEditProfessionalExperienceCardStatusParent,
@@ -102,4 +102,4 @@ const EditProfessionalExperienceCard = ({
   );
 };
 
-export default EditProfessionalExperienceCard;
+export default EditResumeProfessionalExperienceCard;
