@@ -15,7 +15,7 @@ const EditResumeSkillCardOpen = ({
 }) => {
   const [skill, setSkill] = useState(selectedSkill);
 
-  console.log({ selectedSkill });
+  // console.log({ selectedSkill });
 
   const setInputHandler = (e) => {
     setSkill({

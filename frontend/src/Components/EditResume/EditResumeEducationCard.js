@@ -20,7 +20,7 @@ const EditResumeEducationCard = ({
   // console.log({ professionalExperiences });
 
   const onClickHandler = (education) => {
-    console.log({ education });
+    // console.log({ education });
     setSelectedEducationParent(education);
     setEditEducationCardStatusParent((prev) => !prev);
   };
@@ -64,8 +64,8 @@ const EditResumeEducationCard = ({
         >
           <div className={styles.title_and_details_container}>
             <h3 className={styles.job_and_company}>
-              <span className={styles.job_title}>{education.jobTitle}</span>
-              <span className={styles.company}>{education.company}</span>
+              <span className={styles.job_title}>{education.degree}</span>
+              <span className={styles.school}>{education.school}</span>
             </h3>
             <p className={styles.date_and_location}>
               <span className={styles.start_and_end}>

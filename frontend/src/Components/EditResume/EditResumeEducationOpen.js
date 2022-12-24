@@ -1,6 +1,6 @@
-import react, { useState } from "react";
+import react, { useEffect, useState } from "react";
 
-import EditResumeEducationCardOpen from "./EditResumeProfessionalExperienceCardOpen";
+import EditResumeEducationCardOpen from "./EditResumeEducationCardOpen";
 import EditResumeEducationCard from "./EditResumeEducationCard";
 
 import add_icon from "../../icons/add_icon.png";
@@ -17,7 +17,10 @@ const EditResumeEducationOpen = ({
   const [selectedEducation, setSelectedEducation] = useState(null);
   const [editEducationCardStatus, setEditEducationCardStatus] = useState(false);
 
-  console.log({ educationCurrent });
+  // console.log({ educationCurrent });
+  useEffect(() => {
+    setEducationCurrent(education);
+  }, [education]);
 
   return (
     <>

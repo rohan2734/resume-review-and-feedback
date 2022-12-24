@@ -1,71 +1,10 @@
-/* .pe_card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #f3f4f6;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 10px 0;
-} */
-
 .pe__container {
   background: white;
   padding: 1rem;
   border-radius: 5px;
   margin: 10px 0;
 }
-/*
-.pe__title {
-  margin: 0 0 10px 0;
-  font-weight: 1200;
-  font-size: 1.6rem;
-}
-.job_and_company {
-  margin: 0;
-}
-.job_title {
-  font-size: 1rem;
-  font-weight: 600;s
-}
-.company {
-  font-weight: 300;
-}
 
-.date_and_location {
-  margin: 0;
-  font-weight: 400;
-  font-size: 0.8rem;
-}
-.input_container {
-  margin-right: 10px;
-}
-
-.input_label {
-  display: block;
-  font-size: 12px;
-}
-.input_item {
-  background-color: #f3f4f6;
-  border: 0px;
-  border-radius: 5px;
-  padding: 8px;
-  width: 200px;
-}
-.input_date_container {
-  display: flex;
-}
-.input_employer_location {
-  display: flex;
-  justify-content: space-between;
-}
-.input_job_title_and_date_container {
-  display: flex;
-  justify-content: space-between;
-}
-.textarea {
-  width: 97% !important;
-} */
 .button_container {
   display: flex;
   justify-content: center;
