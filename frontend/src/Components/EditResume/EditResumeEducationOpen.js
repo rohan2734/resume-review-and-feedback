@@ -35,7 +35,7 @@ const EditResumeEducationOpen = ({
             setParentsResumeDetails={setParentsResumeDetails}
           />
         )}
-        {/* professional experience card list */}
+        {/* education card list */}
         {!editEducationCardStatus && (
           <EditResumeEducationCard
             educationCurrent={educationCurrent}
