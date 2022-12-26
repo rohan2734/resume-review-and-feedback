@@ -95,4 +95,23 @@ router.patch(
   resumeControllers.editResumeDeleteEducation
 );
 
+//project
+router.patch(
+  "/edit-resume-add-project",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeAddProject
+);
+
+router.patch(
+  "/edit-resume-edit-project",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeEditProject
+);
+
+router.patch(
+  "/edit-resume-delete-project",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeDeleteProject
+);
+
 module.exports = router;

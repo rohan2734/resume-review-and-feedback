@@ -4,6 +4,7 @@ const User = require("../models/user");
 const ProfessionalExperience = require("../models/professionalExperience");
 const Skill = require("../models/skill");
 const Education = require("../models/education");
+const Project = require("../models/project");
 
 //3rd party modules
 const jwt = require("jsonwebtoken");
@@ -87,6 +88,7 @@ const getResumeById = async (req, res) => {
       "professionalExperiences",
       "skills",
       "education",
+      "projects",
     ]);
   } catch (err) {
     console.log(err);
@@ -765,6 +767,172 @@ const editResumeDeleteEducation = async (req, res) => {
   });
 };
 
+//projects
+const editResumeAddProject = async (req, res) => {
+  var { title, subTitle, link, startDate, endDate, description, resumeId } =
+    req.body;
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId });
+  } catch (err) {
+    console.log(err);
+  }
+
+  var newProject = new Project({
+    title,
+    subTitle,
+    link,
+    startDate,
+    endDate,
+    description,
+  });
+
+  try {
+    newProject = await newProject.save();
+  } catch (err) {
+    console.log(err);
+  }
+
+  existingResume.projects = [...existingResume.projects, newProject];
+
+  var updatedResume;
+
+  try {
+    updatedResume = await Resume.findByIdAndUpdate(
+      { _id: resumeId },
+      existingResume,
+      { new: true }
+    ).populate("projects");
+  } catch (err) {
+    console.log(err);
+  }
+
+  return res.json({
+    status: 200,
+    message: "Added project",
+    updatedResume: updatedResume,
+  });
+};
+
+const editResumeEditProject = async (req, res) => {
+  var {
+    title,
+    subTitle,
+    link,
+    startDate,
+    endDate,
+    description,
+    projectId,
+    resumeId,
+  } = req.body;
+
+  // console.log({ b: req.body });
+
+  var existingProject;
+
+  try {
+    existingProject = await Project.findOne({
+      _id: projectId,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  existingProject = {
+    ...existingProject._doc,
+    title,
+    subTitle,
+    link,
+    startDate,
+    endDate,
+    description,
+  };
+
+  var updatedProject;
+  try {
+    updatedProject = await Project.findByIdAndUpdate(
+      { _id: projectId },
+      existingProject,
+      { new: true }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+
+  console.log({ updatedProject });
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId }).populate(
+      "projects"
+    );
+  } catch (err) {
+    console.log(err);
+  }
+
+  console.log({ existingResume });
+
+  return res.json({
+    message: "updated the project",
+    status: 200,
+    updatedProject,
+    updatedResume: existingResume,
+  });
+};
+
+const editResumeDeleteProject = async (req, res) => {
+  var { projectId, resumeId } = req.body;
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId });
+  } catch (err) {
+    console.log(err);
+  }
+  console.log({ existingResume });
+
+  var newProjectsArray = existingResume.projects.filter(
+    (project) => project._id != projectId
+  );
+
+  // console.log({ newProfessionalExperienceArray });
+  existingResume = {
+    ...existingResume._doc,
+    projects: newProjectsArray,
+  };
+
+  // console.log({ existingResume });
+
+  var updatedProject;
+  try {
+    await Project.deleteOne({ _id: projectId });
+  } catch (err) {
+    console.log(err);
+  }
+
+  var updatedResume;
+
+  try {
+    updatedResume = await Resume.findByIdAndUpdate(
+      { _id: resumeId },
+      existingResume,
+      { new: true }
+    ).populate("projects");
+  } catch (err) {
+    console.log(err);
+  }
+  // console.log({ updatedResume });
+  return res.json({
+    updatedResume,
+    message: "deleted the project",
+    status: 200,
+  });
+};
+
 //resume
 exports.createResume = createResume;
 exports.getResumes = getResumes;
@@ -793,3 +961,8 @@ exports.editResumeDeleteSkill = editResumeDeleteSkill;
 exports.editResumeAddEducation = editResumeAddEducation;
 exports.editResumeEditEducation = editResumeEditEducation;
 exports.editResumeDeleteEducation = editResumeDeleteEducation;
+
+//projects
+exports.editResumeAddProject = editResumeAddProject;
+exports.editResumeEditProject = editResumeEditProject;
+exports.editResumeDeleteProject = editResumeDeleteProject;
