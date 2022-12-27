@@ -16,6 +16,7 @@ import EditResumeProfessionalExperienceOpen from "../Components/EditResume/EditR
 import EditResumeSkillOpen from "../Components/EditResume/EditResumeSkillOpen";
 import EditResumeEducationOpen from "../Components/EditResume/EditResumeEducationOpen";
 import EditResumeProjectOpen from "../Components/EditResume/EditResumeProjectOpen";
+import EditResumeAwardOpen from "../Components/EditResume/EditResumeAwardOpen";
 
 // icons
 import profileIcon from "../icons/profile_icon.png";
@@ -26,7 +27,7 @@ import projectsIcon from "../icons/projects_icon.png";
 import awardsIcon from "../icons/awards_icon.png";
 import certificatesIcon from "../icons/certificates_icon.png";
 import languagesIcon from "../icons/languages_icon.png";
-import interestsIcon from "../icons/interests_icon.png";
+// import interestsIcon from "../icons/interests_icon.png";
 
 const EditResume = () => {
   const { resumeId } = useParams();
@@ -184,7 +185,7 @@ const EditResume = () => {
           {!editStatus.projects ? (
             <ResumeEditCardClosed
               title="Projects"
-              cardIcon={educationIcon}
+              cardIcon={projectsIcon}
               setParentsEditStatus={setEditStatus}
               editStatusKey="projects"
             />
@@ -197,7 +198,26 @@ const EditResume = () => {
             />
           )}
 
-          <ResumeEditCardClosed title="Awards" cardIcon={awardsIcon} />
+          {/* edit awards */}
+
+          {/* <ResumeEditCardClosed title="Awards" cardIcon={awardsIcon} /> */}
+
+          {!editStatus.awards ? (
+            <ResumeEditCardClosed
+              title="Awards"
+              cardIcon={awardsIcon}
+              setParentsEditStatus={setEditStatus}
+              editStatusKey="awards"
+            />
+          ) : (
+            <EditResumeAwardOpen
+              resume={resumeDetails}
+              awards={resumeDetails.awards}
+              setParentsEditStatus={setEditStatus}
+              setParentsResumeDetails={setResumeDetails}
+            />
+          )}
+
           {/* <div className={styles.resume__edit_card}>
                         <img src={awardsIcon} className={styles.resume__edit_card_icon}/>
                         <h3 className={styles.resume__edit_card_title}>Awards</h3>
