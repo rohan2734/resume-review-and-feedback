@@ -5,6 +5,7 @@ const ProfessionalExperience = require("../models/professionalExperience");
 const Skill = require("../models/skill");
 const Education = require("../models/education");
 const Project = require("../models/project");
+const Award = require("../models/award");
 
 //3rd party modules
 const jwt = require("jsonwebtoken");
@@ -89,6 +90,7 @@ const getResumeById = async (req, res) => {
       "skills",
       "education",
       "projects",
+      "awards",
     ]);
   } catch (err) {
     console.log(err);
@@ -933,6 +935,158 @@ const editResumeDeleteProject = async (req, res) => {
   });
 };
 
+//projects
+const editResumeAddAward = async (req, res) => {
+  var { title, issuer, issuedDate, description, resumeId } = req.body;
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId });
+  } catch (err) {
+    console.log(err);
+  }
+
+  var newAward = new Award({
+    title,
+    issuer,
+    issuedDate,
+    description,
+  });
+
+  try {
+    newAward = await newAward.save();
+  } catch (err) {
+    console.log(err);
+  }
+
+  existingResume.awards = [...existingResume.awards, newAward];
+
+  var updatedResume;
+
+  try {
+    updatedResume = await Resume.findByIdAndUpdate(
+      { _id: resumeId },
+      existingResume,
+      { new: true }
+    ).populate("awards");
+  } catch (err) {
+    console.log(err);
+  }
+
+  return res.json({
+    status: 200,
+    message: "Added award",
+    updatedResume: updatedResume,
+  });
+};
+
+const editResumeEditAward = async (req, res) => {
+  var { title, issuer, issuedDate, description, awardId, resumeId } = req.body;
+
+  // console.log({ b: req.body });
+
+  var existingAward;
+
+  try {
+    existingAward = await Award.findOne({
+      _id: awardId,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  existingAward = {
+    ...existingAward._doc,
+    title,
+    issuer,
+    issuedDate,
+    description,
+  };
+
+  var updatedAward;
+  try {
+    updatedAward = await Award.findByIdAndUpdate(
+      { _id: awardId },
+      existingAward,
+      { new: true }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+
+  console.log({ updatedAward });
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId }).populate("awards");
+  } catch (err) {
+    console.log(err);
+  }
+
+  console.log({ existingResume });
+
+  return res.json({
+    message: "updated the award",
+    status: 200,
+    updatedAward,
+    updatedResume: existingResume,
+  });
+};
+
+const editResumeDeleteAward = async (req, res) => {
+  var { awardId, resumeId } = req.body;
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId });
+  } catch (err) {
+    console.log(err);
+  }
+  console.log({ existingResume });
+
+  var newAwardsArray = existingResume.awards.filter(
+    (award) => award._id != awardId
+  );
+
+  // console.log({ newProfessionalExperienceArray });
+  existingResume = {
+    ...existingResume._doc,
+    awards: newAwardsArray,
+  };
+
+  // console.log({ existingResume });
+
+  var updatedAward;
+  try {
+    await Award.deleteOne({ _id: awardId });
+  } catch (err) {
+    console.log(err);
+  }
+
+  var updatedResume;
+
+  try {
+    updatedResume = await Resume.findByIdAndUpdate(
+      { _id: resumeId },
+      existingResume,
+      { new: true }
+    ).populate("awards");
+  } catch (err) {
+    console.log(err);
+  }
+  // console.log({ updatedResume });
+  return res.json({
+    updatedResume,
+    message: "deleted the award",
+    status: 200,
+  });
+};
+
+//EXPORTS
+
 //resume
 exports.createResume = createResume;
 exports.getResumes = getResumes;
@@ -966,3 +1120,8 @@ exports.editResumeDeleteEducation = editResumeDeleteEducation;
 exports.editResumeAddProject = editResumeAddProject;
 exports.editResumeEditProject = editResumeEditProject;
 exports.editResumeDeleteProject = editResumeDeleteProject;
+
+//awards
+exports.editResumeAddAward = editResumeAddAward;
+exports.editResumeEditAward = editResumeEditAward;
+exports.editResumeDeleteAward = editResumeDeleteAward;

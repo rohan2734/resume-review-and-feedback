@@ -180,7 +180,7 @@ const EditResume = () => {
           )}
 
           {/* edit projects */}
-          {/* <ResumeEditCardClosed title="Projects" cardIcon={projectsIcon} /> */}
+
           {!editStatus.projects ? (
             <ResumeEditCardClosed
               title="Projects"
@@ -205,7 +205,7 @@ const EditResume = () => {
                     </div> */}
 
           {/* edit interests */}
-          <ResumeEditCardClosed title="Interests" cardIcon={interestsIcon} />
+          {/* <ResumeEditCardClosed title="Interests" cardIcon={interestsIcon} /> */}
           {/* <div className={styles.resume__edit_card}>
                         <img src={interestsIcon} className={styles.resume__edit_card_icon}/>
                         <h3 className={styles.resume__edit_card_title}>Interests</h3>

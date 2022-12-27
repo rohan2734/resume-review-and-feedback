@@ -114,4 +114,23 @@ router.patch(
   resumeControllers.editResumeDeleteProject
 );
 
+//award
+router.patch(
+  "/edit-resume-add-award",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeAddAward
+);
+
+router.patch(
+  "/edit-resume-edit-award",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeEditAward
+);
+
+router.patch(
+  "/edit-resume-delete-award",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeDeleteAward
+);
+
 module.exports = router;
