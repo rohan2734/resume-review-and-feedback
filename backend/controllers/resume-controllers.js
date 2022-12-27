@@ -6,6 +6,7 @@ const Skill = require("../models/skill");
 const Education = require("../models/education");
 const Project = require("../models/project");
 const Award = require("../models/award");
+const Certificate = require("../models/certificate");
 
 //3rd party modules
 const jwt = require("jsonwebtoken");
@@ -935,7 +936,7 @@ const editResumeDeleteProject = async (req, res) => {
   });
 };
 
-//projects
+//awards
 const editResumeAddAward = async (req, res) => {
   var { title, issuer, issuedDate, description, resumeId } = req.body;
 
@@ -1085,6 +1086,159 @@ const editResumeDeleteAward = async (req, res) => {
   });
 };
 
+//certificates
+const editResumeAddCertificate = async (req, res) => {
+  var { title, link, description, resumeId } = req.body;
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId });
+  } catch (err) {
+    console.log(err);
+  }
+
+  var newCertificate = new Award({
+    title,
+    link,
+    description,
+  });
+
+  try {
+    newCertificate = await newCertificate.save();
+  } catch (err) {
+    console.log(err);
+  }
+
+  existingResume.certificates = [
+    ...existingResume.certificates,
+    newCertificate,
+  ];
+
+  var updatedResume;
+
+  try {
+    updatedResume = await Resume.findByIdAndUpdate(
+      { _id: resumeId },
+      existingResume,
+      { new: true }
+    ).populate("certificates");
+  } catch (err) {
+    console.log(err);
+  }
+
+  return res.json({
+    status: 200,
+    message: "Added certificate",
+    updatedResume: updatedResume,
+  });
+};
+
+const editResumeEditCertificate = async (req, res) => {
+  var { title, link, description, certificateId, resumeId } = req.body;
+
+  // console.log({ b: req.body });
+
+  var existingCertificate;
+
+  try {
+    existingCertificate = await Certificate.findOne({
+      _id: certificateId,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  existingCertificate = {
+    ...existingCertificate._doc,
+    title,
+    link,
+    description,
+  };
+
+  var updatedCertificate;
+  try {
+    updatedCertificate = await Certificate.findByIdAndUpdate(
+      { _id: certificateId },
+      existingCertificate,
+      { new: true }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+
+  console.log({ updatedCertificate });
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId }).populate(
+      "certificates"
+    );
+  } catch (err) {
+    console.log(err);
+  }
+
+  console.log({ existingResume });
+
+  return res.json({
+    message: "updated the certificate",
+    status: 200,
+    updatedCertificate,
+    updatedResume: existingResume,
+  });
+};
+
+const editResumeDeleteCertificate = async (req, res) => {
+  var { certificateId, resumeId } = req.body;
+
+  var existingResume;
+
+  try {
+    existingResume = await Resume.findOne({ _id: resumeId });
+  } catch (err) {
+    console.log(err);
+  }
+  console.log({ existingResume });
+
+  var newCertificatesArray = existingResume.certificates.filter(
+    (certificate) => certificate._id != certificateId
+  );
+
+  // console.log({ newProfessionalExperienceArray });
+  existingResume = {
+    ...existingResume._doc,
+    certificates: newCertificatesArray,
+  };
+
+  // console.log({ existingResume });
+
+  var updatedCertificate;
+  try {
+    await Certificate.deleteOne({ _id: certificateId });
+  } catch (err) {
+    console.log(err);
+  }
+
+  var updatedResume;
+
+  try {
+    updatedResume = await Resume.findByIdAndUpdate(
+      { _id: resumeId },
+      existingResume,
+      { new: true }
+    ).populate("certificates");
+  } catch (err) {
+    console.log(err);
+  }
+  // console.log({ updatedResume });
+  return res.json({
+    updatedResume,
+    message: "deleted the certificate",
+    status: 200,
+  });
+};
+
 //EXPORTS
 
 //resume
@@ -1125,3 +1279,8 @@ exports.editResumeDeleteProject = editResumeDeleteProject;
 exports.editResumeAddAward = editResumeAddAward;
 exports.editResumeEditAward = editResumeEditAward;
 exports.editResumeDeleteAward = editResumeDeleteAward;
+
+//certificates
+exports.editResumeAddCertificate = editResumeAddCertificate;
+exports.editResumeEditCertificate = editResumeEditCertificate;
+exports.editResumeDeleteCertificate = editResumeDeleteCertificate;
