@@ -92,6 +92,7 @@ const getResumeById = async (req, res) => {
       "education",
       "projects",
       "awards",
+      "certificates",
     ]);
   } catch (err) {
     console.log(err);
@@ -1098,7 +1099,7 @@ const editResumeAddCertificate = async (req, res) => {
     console.log(err);
   }
 
-  var newCertificate = new Award({
+  var newCertificate = new Certificate({
     title,
     link,
     description,

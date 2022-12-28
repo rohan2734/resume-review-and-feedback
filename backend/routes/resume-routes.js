@@ -133,4 +133,23 @@ router.patch(
   resumeControllers.editResumeDeleteAward
 );
 
+//certificate
+router.patch(
+  "/edit-resume-add-certificate",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeAddCertificate
+);
+
+router.patch(
+  "/edit-resume-edit-certificate",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeEditCertificate
+);
+
+router.patch(
+  "/edit-resume-delete-certificate",
+  middleWares.authenticateToken,
+  resumeControllers.editResumeDeleteCertificate
+);
+
 module.exports = router;
